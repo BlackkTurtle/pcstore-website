@@ -1,0 +1,29 @@
+<app-nav-bar></app-nav-bar>
+
+<div id="search-page">
+
+    <div>
+        <div>
+            <label>Типи:</label><br>
+            <input type="text" [(ngModel)]="searchTypes" placeholder="Пошук..." id="search-input" (input)="typesinputChange()"/><br>
+
+            <div>
+                <label>Вибрані Типи:</label>
+                <div *ngFor="let selectedtype of selectedTypes; let i=index" class="types-li">
+                    <input type="checkbox" (change)="selectedtypesChangedCheckbox(i)" checked="true">
+                    {{selectedtype.typeName}}
+                </div><br>
+                <label>Невибрані Типи:</label>
+                <div *ngFor="let type of types; let i=index" class="types-li">
+                    <input type="checkbox" (change)="typesChangedCheckbox(i)">
+                    {{type.typeName}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+    </div>
+
+</div>
