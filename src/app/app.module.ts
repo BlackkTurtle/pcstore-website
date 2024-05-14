@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TypesService } from './services/types.service';
 import { BrandService } from './services/brand.service';
 import { ProductService } from './services/product.service';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductService } from './services/product.service';
     NavBarComponent,
     OrderPageComponent,
     UserPageComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

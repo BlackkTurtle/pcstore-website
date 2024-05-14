@@ -1,0 +1,29 @@
+
+
+#main{
+  width: 50%;
+  margin-left: 10%;
+  background: #0000;
+  border: 1px solid rgba(49, 205, 49, 0.87);
+  padding: 20px 2.5%;
+    float: left;
+}
+#aside{
+  width: 20%;
+  padding: 20px 2.5%;
+  background: #fafafa;
+  border: 1px solid green;
+  float: left;
+  margin-left: 5%;
+}
+
+#img_1{
+  min-width:20px;
+  width:20vw;
+  height:auto ;
+}
+#img_1:active{
+
+  background-color: BLACK;
+
+}
