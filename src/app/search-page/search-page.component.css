@@ -1,5 +1,26 @@
-#search-div{
+#search-page{
     width: auto;
     height: auto;
     display: flex;
+}
+.checkboxes-scroll{
+    overflow: auto;
+    height: 29vh;
+    overflow-y:scroll;
+    width: auto;
+}
+#search-input{
+    height: 20px;
+    font-size: 16px;
+    width: 89%;
+}
+.check-line{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#check-div{
+    margin-left: 10vw;
+    margin-top: 20px;
+    width: 15vw;
+    min-width: 150px;
 }

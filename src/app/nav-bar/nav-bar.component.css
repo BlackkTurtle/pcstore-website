@@ -2,6 +2,7 @@
     width: 15vw;
     height: 9vw;
     margin-left: 12vw;
+    cursor: pointer;
 }
 #search-input{
     width: 40vw;
