@@ -1,7 +1,10 @@
+import { Product } from "./product.interface";
+
 export interface PartOrder{
-    PorderId:Number,
-    Article:Number,
-    OrderId:Number,
-    Quantity:Number,
-    Price:Number
+    porderId:number,
+    article:number,
+    orderId:number,
+    quantity:number,
+    price:number,
+    product:Product
 }

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Brand } from '../interfaces/brand.interface';
+import { Product } from '../interfaces/product.interface';
 import { Types } from '../interfaces/types.interface';
 import { BrandService } from '../services/brand.service';
+import { ProductService } from '../services/product.service';
 import { TypesService } from '../services/types.service';
 
 @Component({
@@ -19,10 +22,21 @@ export class SearchPageComponent implements OnInit {
   brands:Brand[]=[];
   selectedBrands:Brand[]=[];
 
+  products:Product[]=[];
+  selectedSortOption:any;
+  sortOptions:string[]=[
+    'Від дешевих до дорогих',
+    'Від дорогих до дешевих'
+  ];
+  minPrice:number=0;
+  maxPrice:number=0;
+
   constructor(
     private titleService:Title,
     private typesService:TypesService,
-    private brandService:BrandService
+    private brandService:BrandService,
+    private activatedRoute:ActivatedRoute,
+    private productService:ProductService
   ){
     titleService.setTitle("Pc Store:Search Page")
   }
@@ -34,6 +48,59 @@ export class SearchPageComponent implements OnInit {
     this.brandService.getBrands().subscribe((result) => {
       this.brands = result;
     });
+    this.activatedRoute.paramMap.subscribe(value=>{
+      this.setProductsOnInit(value);
+    });
+  }
+
+  setPrices(){
+    this.minPrice=this.products.reduce((prev, current) => (prev.price < current.price) ? prev : current).price;
+    this.maxPrice=this.products.reduce((prev, current) => (prev.price > current.price) ? prev : current).price;
+  }
+
+  sortTypeChange(){
+    if(this.selectedSortOption==this.sortOptions[0]){
+      this.products=this.products.sort((a,b) => a.price - b.price);
+    }else 
+    if(this.selectedSortOption==this.sortOptions[1]){
+      this.products=this.products.sort((a,b) => b.price- a.price);
+    }
+  }
+
+  setProductsByTypesAndBrands(){
+    this.productService.getProductsByTypesAndBrands(this.selectedTypes,this.selectedBrands,this.minPrice,this.maxPrice).subscribe((result) => {
+      console.log(result);
+      this.products = result;
+    });
+  }
+
+  setProductsOnInit(value:ParamMap){
+    let searchtype=value.get('searchmethod');
+
+    if(searchtype=="1"){
+      let searchname=value.get('searchstr')
+      this.productService.getProductsByNameLike(searchname).subscribe((result) => {
+        this.products = result;
+        this.setPrices()
+      });
+    }else if(searchtype=="2"){
+      let searchname=value.get('brandid')
+      this.productService.getProductsByBrandId(searchname).subscribe((result) => {
+        this.products = result;
+        this.setPrices()
+      });
+    }else if(searchtype=="3"){
+      let searchname=value.get('typeid')
+      this.productService.getProductsByTypeId(searchname).subscribe((result) => {
+        this.products = result;
+        this.setPrices()
+      });
+    }else{
+      this.productService.getProducts().subscribe((result) => {
+        this.products = result;
+        this.setPrices()
+      });
+    }
   }
 
   //Types methods

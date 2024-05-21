@@ -21,6 +21,54 @@
 #check-div{
     margin-left: 10vw;
     margin-top: 20px;
-    width: 15vw;
+    width:12vw;
     min-width: 150px;
+    font-size: 15px;
+}
+.price-input{
+    width: 20%;
+}
+#price-button{
+    margin-left: 10px;
+}
+#product-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+#products-div{
+    width: 60vw;
+    margin-left: 20px;
+}
+.product-item{
+    width: 14vw;
+    min-width: 150px;
+    height: auto;
+    border: 1px solid lightgray;
+}
+.product-picture{
+    width: 14vw;
+    min-width: 150px;
+    height: 14vw;
+    min-height: 150px;
+    border-bottom: 1px solid lightgray;
+}
+.product-name{
+    font-size: 15px;
+    margin-left: 2%;
+}
+.product-price{
+    font-size: 30px;
+    margin-left: 2%;
+}
+.availability-true{
+    color: rgb(38, 180, 38);
+    margin-left: 2%;
+}
+.availability-false{
+    color: red;
+    margin-left: 2%;
+}
+#sort-select{
+    font-size: 20px;
+    margin-left: 5px;
 }
