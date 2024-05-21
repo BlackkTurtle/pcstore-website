@@ -1,4 +1,4 @@
 export interface Status{
-    StatusId:Number,
-    StatusName:string
+    statusId:Number,
+    statusName:string
 }

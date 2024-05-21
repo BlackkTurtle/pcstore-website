@@ -5,17 +5,17 @@
     <div>
         <div id="searchdiv">
             <input type="text" [(ngModel)]="searchValue" placeholder="Пошук..." id="search-input" (input)="inputChange()"/>
-            <img src="../../assets/images/search-icon.png" id="search-button" routerLink="/searchpage">
+            <img src="../../assets/images/search-icon.png" id="search-button" routerLink="/searchpage/1/{{searchValue}}/0/0">
         </div>
 
       <ul *ngIf="types.length>0 || brands.length>0 || products.length>0" id="products-result-ul">
-        <li *ngFor="let product of products; let i=index" class="types-li">
+        <li *ngFor="let product of products; let i=index" class="types-li" routerLink="/productpage/{{product.article}}">
             {{product.name}}
         </li>
-        <li *ngFor="let brand of brands; let i=index" class="types-li">
+        <li *ngFor="let brand of brands; let i=index" class="types-li" routerLink="/searchpage/2/0/0/{{brand.brandId}}">
             {{brand.brandName}} -  <b>Бренд</b>
         </li>
-        <li *ngFor="let type of types; let i=index" class="types-li">
+        <li *ngFor="let type of types; let i=index" class="types-li" routerLink="/searchpage/3/0/{{type.id}}/0">
             {{type.typeName}} -  <b>Тип</b>
         </li>
       </ul>
