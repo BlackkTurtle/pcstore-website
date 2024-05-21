@@ -1,8 +1,8 @@
 export interface Comment{
-    CommentId:Number,
-    Article:Number,
-    Stars:Number,
-    CommentDate:Date,
+    commentId:number,
+    Article:number,
+    Stars:number,
+    CommentDate:string,
     UserId:string,
     Comment1:string
 }
