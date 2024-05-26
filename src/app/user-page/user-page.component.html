@@ -10,6 +10,8 @@
                     <div style="display: flex;" *ngFor="let porder of order.partOrders; let i=index">
                         <img style="width: 150px;height: auto;" [src]="porder.product.picture" alt="No-photo">
                         <label> Назва: {{porder.product.name}} <br>Ціна: {{porder.price | currency:'UAH':'symbol-narrow'}}</label>
+                        <p>Кількість: </p>
+                                 <p style="margin-left: 10px; margin-right:10px;">{{porder.quantity}}</p>
                     </div>
                     <hr>
                 </div>

@@ -25,6 +25,11 @@ export class ProductService {
       `http://localhost:8002/api/EFProducts/BrandID/${id}`
     );
   }
+  getProductsById(id:string|null): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      `http://localhost:8002/api/EFProducts/${id}`
+    );
+  }
   getProductsByTypeId(id:string|null): Observable<Product[]> {
     return this.http.get<Product[]>(
       `http://localhost:8002/api/EFProducts/TypeID/${id}`

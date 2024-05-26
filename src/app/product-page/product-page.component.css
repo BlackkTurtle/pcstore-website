@@ -69,12 +69,14 @@
   border-radius: 10px;
 }
 #Feedback{
-
-
   border-radius: 10px;
   width: 99%;
-  height:70px;
+  height:auto;
   border: 1.2px solid lightgray;
   margin-top: 2%;
 
+}
+#star-rating {
+  font-size: 2em;
+  color: #ffc107;
 }

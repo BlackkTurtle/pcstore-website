@@ -23,6 +23,8 @@ import { ReggPageComponent } from './regg-page/regg-page.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './auth-interceptor.interceptor';
 import { OrderService } from './services/order.service';
+import { CommentService } from './services/comment.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { OrderService } from './services/order.service';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    NgbModule
   ],
   providers: [
     TypesService,
@@ -52,6 +55,7 @@ import { OrderService } from './services/order.service';
     ProductService,
     AuthService,
     OrderService,
+    CommentService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]

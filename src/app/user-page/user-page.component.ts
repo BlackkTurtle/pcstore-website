@@ -36,9 +36,7 @@ export class UserPageComponent implements OnInit {
       });
 
       this.orderService.getOrdersByUser().subscribe((result) => {
-        console.log(result)
         this.orders = result;
-        console.log(this.orders)
       });
   }
 

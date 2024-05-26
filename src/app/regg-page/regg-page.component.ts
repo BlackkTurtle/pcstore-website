@@ -32,7 +32,9 @@ export class ReggPageComponent {
         )
       ]),
       passwordrepeat:new FormControl('',[
-        Validators.required
+        Validators.required,
+        Validators.pattern(
+          /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/)
       ]),
       surname:new FormControl('',[
         Validators.required,
@@ -47,7 +49,6 @@ export class ReggPageComponent {
         )
       ]),
       father:new FormControl('',[
-        Validators.required,
         Validators.pattern(
           /^[A-Za-z]+$/
         )
@@ -108,7 +109,7 @@ onRegister() {
   ).subscribe(
     (res: any) => {
       if (res.error) {
-        this.errorMessage = res.message;
+        this.errorMessage = "Користувач з такою поштою вже існує у базі!";
       } else {
         this.router.navigate(['/authpage']);
       }
