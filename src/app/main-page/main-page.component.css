@@ -1,9 +1,10 @@
 #main-page-reccomendations{
+    margin-left: 10%;
     margin-top: 3vh;
     width: 100%;
 }
 .main-pg-txt{
-    margin-left: 13%;
+    margin-left: 5%;
 }
 #ad-div{
     width: auto;
@@ -13,4 +14,48 @@
 #ad-img{
     width: 50vw;
     height: auto;
+}
+#products-div{
+    width: 60vw;
+    margin-left: 20px;
+}
+.product-item {
+    width: 10.5vw;
+    min-width: 150px;
+    height: auto;
+}
+.product-item:hover{
+    background-color: lightgray;
+    cursor: pointer;
+}
+.product-picture{
+    margin-left: 3.5%;
+    margin-top: 3.5%;
+    width: 80%;
+    min-width: 150px;
+    height: 80%;
+    min-height: 150px;
+    border-bottom: 1px solid lightgray;
+}
+.product-name{
+    font-size: 15px;
+    margin-left: 2%;
+}
+.product-price{
+    font-size: 20px;
+    margin-left: 2%;
+}
+.availability-true{
+    font-size: 15px;
+    color: rgb(38, 180, 38);
+    margin-left: 2%;
+}
+.availability-false{
+    font-size: 15px;
+    color: red;
+    margin-left: 2%;
+}
+#star-rating {
+    font-size: 2vw;
+    color: #ffc107;
 }

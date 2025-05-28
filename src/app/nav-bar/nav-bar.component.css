@@ -50,6 +50,11 @@
     height: 60px;
     width: auto;
 }
+#image-search{
+    margin-left: 1vw;
+    height:30px;
+    width: auto;
+}
 #products-result-ul{
     list-style-type: none;
     margin-top: -50px;

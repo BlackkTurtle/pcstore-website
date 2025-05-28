@@ -25,6 +25,8 @@ import { AuthInterceptor } from './auth-interceptor.interceptor';
 import { OrderService } from './services/order.service';
 import { CommentService } from './services/comment.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModelPageComponent } from './model-page/model-page.component';
+import { ModelService } from './services/model.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     OrderByPipe,
     ProductPageComponent,
     AuthPageComponent,
-    ReggPageComponent
+    ReggPageComponent,
+    ModelPageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AuthService,
     OrderService,
     CommentService,
+    ModelService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]

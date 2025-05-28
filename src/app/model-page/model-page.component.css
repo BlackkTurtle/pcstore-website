@@ -1,0 +1,104 @@
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-button {
+  border: 3px solid black;
+  background-color: black;
+  font-family: "Montserrat";
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+  background-color: white; 
+  color:black;
+}
+
+.drop-zone {
+  font-family: "Montserrat";
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  border: 2px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 150px;
+  margin-top: 10px;
+}
+
+
+.drop-zone p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.drop-zone.dragover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.main-pg-txt {
+  display: flex;
+  justify-content: center; 
+  align-items: center;      
+  text-align: center;               
+}
+
+.product-item {
+  width: 10.5vw;
+  min-width: 150px;
+  height: auto;
+}
+.product-item:hover{
+  background-color: lightgray;
+  cursor: pointer;
+}
+.product-picture{
+  margin-left: 3.5%;
+  margin-top: 3.5%;
+  width: 80%;
+  min-width: 150px;
+  height: 80%;
+  min-height: 150px;
+  border-bottom: 1px solid lightgray;
+}
+.product-name{
+  font-size: 15px;
+  margin-left: 2%;
+}
+.product-price{
+  font-size: 20px;
+  margin-left: 2%;
+}
+.availability-true{
+  font-size: 15px;
+  color: rgb(38, 180, 38);
+  margin-left: 2%;
+}
+.availability-false{
+  font-size: 15px;
+  color: red;
+  margin-left: 2%;
+}
+#star-rating {
+  font-size: 2vw;
+  color: #ffc107;
+}
