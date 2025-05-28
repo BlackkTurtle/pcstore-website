@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AdvertisementDTO } from '../DTOs/advertisementDTO.interface';
+import { AdvertisementDTO } from '../DTOs/AdvertisementDTOs/advertisementDTO.interface';
 
 @Injectable()
 export class AdvertisementService {

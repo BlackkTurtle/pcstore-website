@@ -28,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModelPageComponent } from './model-page/model-page.component';
 import { ModelService } from './services/model.service';
 import { AdvertisementService } from './services/advertisement.service';
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AdvertisementService } from './services/advertisement.service';
     OrderService,
     CommentService,
     ModelService,
+    NavbarService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]

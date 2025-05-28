@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ModelService } from '../services/model.service';
-import { ProductWithRating } from '../DTOs/ProductWithRatingDTO.interface';
+import { ProductWithRating } from '../DTOs/ProductDTOs/ProductWithRatingDTO.interface';
 import { ProductService } from '../services/product.service';
 
 @Component({

@@ -9,14 +9,14 @@
         </div>
 
       <ul *ngIf="types.length>0 || brands.length>0 || products.length>0" id="products-result-ul">
-        <li *ngFor="let product of products; let i=index" class="types-li" routerLink="/productpage/{{product.article}}">
+        <li *ngFor="let product of products; let i=index" class="types-li" routerLink="/productpage/{{product.id}}">
             {{product.name}}
         </li>
-        <li *ngFor="let brand of brands; let i=index" class="types-li" routerLink="/searchpage/2/0/0/{{brand.brandId}}">
-            {{brand.brandName}} -  <b>Бренд</b>
+        <li *ngFor="let brand of brands; let i=index" class="types-li" routerLink="/searchpage/2/0/0/{{brand.id}}">
+            {{brand.name}} -  <b>Бренд</b>
         </li>
         <li *ngFor="let type of types; let i=index" class="types-li" routerLink="/searchpage/3/0/{{type.id}}/0">
-            {{type.typeName}} -  <b>Тип</b>
+            {{type.name}} -  <b>Тип</b>
         </li>
       </ul>
       

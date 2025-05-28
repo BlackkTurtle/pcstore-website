@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Brand } from '../interfaces/brand.interface';
 import { Product } from '../interfaces/product.interface';
 import { Types } from '../interfaces/types.interface';
-import { ProductWithRating } from '../DTOs/ProductWithRatingDTO.interface';
+import { ProductWithRating } from '../DTOs/ProductDTOs/ProductWithRatingDTO.interface';
 
 @Injectable()
 export class ProductService {

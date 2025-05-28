@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ProductService } from '../services/product.service';
-import { ProductWithRating } from '../DTOs/ProductWithRatingDTO.interface';
+import { ProductWithRating } from '../DTOs/ProductDTOs/ProductWithRatingDTO.interface';
 import { AdvertisementService } from '../services/advertisement.service';
-import { AdvertisementDTO } from '../DTOs/advertisementDTO.interface';
+import { AdvertisementDTO } from '../DTOs/AdvertisementDTOs/advertisementDTO.interface';
 
 @Component({
   selector: 'app-main-page',

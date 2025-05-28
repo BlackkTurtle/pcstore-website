@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Order } from '../interfaces/order.interface';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
-import { PartOrder } from "../interfaces/partorder.interface";
 
 @Component({
   selector: 'app-user-page',
@@ -14,8 +12,6 @@ import { PartOrder } from "../interfaces/partorder.interface";
 export class UserPageComponent implements OnInit {
 
   user:any;
-  orders:Order[]=[]
-  porders:PartOrder[]=[]
 
   constructor(
     private titleService:Title,
@@ -36,7 +32,6 @@ export class UserPageComponent implements OnInit {
       });
 
       this.orderService.getOrdersByUser().subscribe((result) => {
-        this.orders = result;
       });
   }
 

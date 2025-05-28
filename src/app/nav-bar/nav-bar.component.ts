@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Brand } from '../interfaces/brand.interface';
-import { Product } from '../interfaces/product.interface';
-import { Types } from '../interfaces/types.interface';
 import { BrandService } from '../services/brand.service';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { TypesService } from '../services/types.service';
+import { CategoryIdNameDTO } from '../DTOs/CategoryDTOs/categoryIdNameDTO.interface';
+import { GetBrandDTO } from '../DTOs/BrandDTOs/getBrandDTO.interface';
+import { ProductIdNameDTO } from '../DTOs/ProductDTOs/ProductIdNameDTO.interface';
+import { NavbarService } from '../services/navbar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,16 +15,14 @@ import { TypesService } from '../services/types.service';
 })
 export class NavBarComponent implements OnInit {
   searchValue:string="";
-  types: Types[] = [];
-  brands: Brand[] = [];
-  products: Product[]=[];
+  types: CategoryIdNameDTO[] = [];
+  brands: GetBrandDTO[] = [];
+  products: ProductIdNameDTO[]=[];
   cartQuantity:number=0;
 
   constructor(
-    private typesService:TypesService,
-    private brandService:BrandService,
-    private productService:ProductService,
-    private cartService:CartService
+    private cartService:CartService,
+    private navbarService: NavbarService
   ){}
 
   ngOnInit(): void {
@@ -32,14 +31,10 @@ export class NavBarComponent implements OnInit {
 
   inputChange(){
     if(this.searchValue.length>=2){
-      this.typesService.getTypesByNameLike(this.searchValue).subscribe((result) => {
-        this.types = result.slice(0,2);
-      });
-      this.brandService.getBrandsByNameLike(this.searchValue).subscribe((result) => {
-        this.brands = result.slice(0,2);
-      });
-      this.productService.getProductsByNameLike(this.searchValue).subscribe((result) => {
-        this.products = result.slice(0,3);
+      this.navbarService.getSearchBarResultByNameLike(this.searchValue).subscribe((result) => {
+        this.types = result.categorys;
+        this.brands = result.brands;
+        this.products = result.products;
       });
     }else{
       this.types=[];
