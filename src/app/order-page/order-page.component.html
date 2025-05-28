@@ -1,1 +1,194 @@
 <app-nav-bar></app-nav-bar>
+<div id="order-page">
+    <div id="orders-div">
+        <div>
+            <label>Замовлення:</label><br>
+            <label style="margin-left: 40%; font-size:15px; color:lightgray" *ngIf="pOrders.length==0">Немає замовлень</label><br>
+            <div *ngIf="pOrders.length>0">
+                <div style="display: flex;" *ngFor="let porder of pOrders; let i=index">
+                        <img style="width: 150px;height: auto;" [src]="porder.product.picture" alt="No-photo">
+                        <div>
+                            <label> Назва: {{porder.product.name}} <br>Ціна: {{porder.price | currency:'UAH':'symbol-narrow'}}</label><br>
+                            <div id="quantity-div">
+                                <p>Кількість: </p>
+                                <button (click)="onAddQuantity(i)" class="quantity-btn">+</button>
+                                 <p style="margin-left: 10px; margin-right:10px;">{{porder.quantity}}</p>
+                                <button (click)="onRemoveQuantity(i)" class="quantity-btn">-</button>
+                            </div>
+                        </div>
+                </div>
+                <hr>
+            </div>
+            <label>Сумма: {{getProductsSum()| currency:'UAH':'symbol-narrow'}}</label>
+        </div>
+    </div>
+
+    <div>
+        <form [formGroup]="reggform" id="regg-form">
+            <h1 style="margin-left:45%; font-size: 35px;">Замовлення</h1>
+            <table>
+              <tr>
+                <td>
+                  <div class="regg-group">
+                    <input
+                      type="text"
+                      placeholder="Електронна пошта"
+                      class="form-control"
+                      name="email"
+                      formControlName="email"
+                    />
+                    <div
+                      class="alert-data"
+                      *ngIf="
+                        reggform.get('email')?.touched &&
+                        reggform.get('email')?.invalid
+                      "
+                    >
+                      <div *ngIf="reggform.get('email').errors?.required">
+                        *Це обов'язкове поле.
+                      </div>
+                      <div *ngIf="reggform.get('email').errors?.email">
+                        *Неправильно введено пошту.
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                    <div class="regg-group">
+                      <input
+                        type="tel"
+                        placeholder="Номер Телефону"
+                        class="form-control"
+                        name="phone"
+                        formControlName="phone"
+                      />
+                      <div
+                        class="alert-data"
+                        *ngIf="
+                          reggform.get('phone')?.touched &&
+                          reggform.get('phone')?.invalid
+                        "
+                      >
+                        <div *ngIf="reggform.get('phone').errors?.required">
+                          *Це обов'язкове поле.
+                        </div>
+                        <div *ngIf="reggform.get('phone').errors?.pattern">
+                          *Неправильно введено номер телефону.
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <hr class="reggform-line" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="regg-group">
+                    <input
+                      type="text"
+                      placeholder="Прізвище"
+                      class="form-control"
+                      name="surname"
+                      formControlName="surname"
+                    />
+                    <div
+                      class="alert-data"
+                      *ngIf="
+                        reggform.get('surname')?.touched &&
+                        reggform.get('surname')?.invalid
+                      "
+                    >
+                      <div *ngIf="reggform.get('surname').errors?.required">
+                        *Це обов'язкове поле.
+                      </div>
+                      <div *ngIf="reggform.get('surname').errors?.pattern">
+                        *Неправильно введено.
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="regg-group">
+                    <input
+                      type="text"
+                      placeholder="Ім'я"
+                      class="form-control"
+                      name="firstname"
+                      formControlName="firstname"
+                    />
+                    <div
+                      class="alert-data"
+                      *ngIf="
+                        reggform.get('firstname')?.touched &&
+                        reggform.get('firstname')?.invalid
+                      "
+                    >
+                      <div *ngIf="reggform.get('firstname').errors?.required">
+                        *Це обов'язкове поле.
+                      </div>
+                      <div *ngIf="reggform.get('firstname').errors?.pattern">
+                        *Неправильно введено.
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                    <div class="regg-group" id="father-div">
+                      <input
+                        type="text"
+                        placeholder="По-Батькові"
+                        class="form-control"
+                        name="father"
+                        formControlName="father"
+                      />
+                      <div
+                        class="alert-data"
+                        *ngIf="
+                          reggform.get('father')?.touched &&
+                          reggform.get('father')?.invalid
+                        "
+                      >
+                        <div *ngIf="reggform.get('father').errors?.pattern">
+                            *Неправильно введено.
+                          </div>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                    <div class="regg-group" style="margin-left: 37.5%;">
+                      <input
+                        type="text"
+                        placeholder="Адреса"
+                        class="form-control"
+                        name="address"
+                        formControlName="address"
+                      />
+                      <div
+                        class="alert-data"
+                        *ngIf="
+                          reggform.get('address')?.touched &&
+                          reggform.get('address')?.invalid
+                        "
+                      >
+                        <div *ngIf="reggform.get('address').errors?.required">
+                          *Це обов'язкове поле.
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+            </table>
+            <button type="submit" class="submit-btn" [disabled]="reggform.invalid" (click)="onSubmit()">
+              Замовити
+            </button>
+            <div class="alert-data" style="margin-left: 33%;" *ngIf="errorMessage.length>0" > {{errorMessage}}</div>
+          </form>
+    </div>
+</div>

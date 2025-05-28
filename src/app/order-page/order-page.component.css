@@ -1,0 +1,84 @@
+#order-page{
+    display:flex;
+    flex-wrap:wrap ;
+    margin-top: 25px;
+  }
+  #orders-div{
+    width: 45vw;
+    min-width: 300px;
+    margin-left: 1%;
+    border: 1px solid lightgray;
+    height: auto;
+    padding: 10px;
+}
+#quantity-div{
+    display: flex;
+}
+.quantity-btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: white;
+}
+.quantity-btn:hover{
+    background-color: black;
+    color: white;
+}
+.submit-btn {
+    margin-left: 45%;
+    background-color: white;
+    font-family: "Montserrat";
+    font-size: 100%;
+    border-width: 0px;
+    border-radius: 0.8vh;
+    text-align: center;
+    width: 35%;
+    min-width: 100px;
+    height: 5vh;
+    color: black;
+    margin-top: 2%;
+    border: 5px solid black;
+    font-weight: 900;
+  }
+  .submit-btn:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+    background-color: black;
+    color: white;
+  }
+  .alert-data {
+    color: red;
+    font-size: 1.4vh;
+    width: 16vw;
+    min-width: 150px;
+  }
+  .regg-group {
+    text-align: left;
+    display: grid;
+    justify-content: space-between;
+    font-size: 100%;
+    margin-left: 25%;
+    margin-top: 5%;
+    width: 100%;
+  }
+  .regg-group input {
+    height: 3vh;
+    font-family: "Montserrat";
+    width: 16vw;
+    min-width: 100px;
+    border-width: 1px;
+    border-radius: 0.5vh;
+    border-color: #505050;
+  }
+  .reggform-line {
+    width: 80%;
+    margin-left: 20%;
+    border-color: #004225;
+    border-width: 1px;
+    min-width: 85px;
+    margin-top: 5%;
+  }
+  #father-div{
+    margin-left: 37.5%;
+  }

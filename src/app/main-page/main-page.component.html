@@ -2,13 +2,41 @@
 <div id="main-page-reccomendations">
     <div style="display: flex;">
         <div class="main-pg-txt">
-            <label>Популярні товари:</label>
+            <label>Нові товари:</label><br>
+            <div *ngFor="let product of new2Products; let i=index" class="product-item"
+                routerLink='/productpage/{{product.id}}'>
+                <img [src]="product.photoLink" alt="product-picture" class="product-picture"><br>
+                <label class="product-name">{{product.name}}</label><br>
+                <div style="display: flex; align-items: center;">
+                    <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="product.rating"></ngb-rating>
+                    <h6>{{product.rating}}</h6>
+                </div>
+                <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
+                <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>
+                <label *ngIf="product.availlability==false" class="availability-false">Немає в наявності</label><br>
+            </div>
         </div>
-        <div id="ad-div">
-            <img id="ad-img" src="../../assets/images/ad-icon.jpg">
+        <div>
+            <div id="ad-div">
+                <img id="ad-img" src="../../assets/images/ad-icon.jpg">
+            </div>
+            <div class="main-pg-txt">
+                <label>Нещодавно переглянуті:</label>
+            </div>
+            <div style="display: flex; height: 20%; margin-left: 60px;">
+                <div *ngFor="let product of seenProducts; let i=index" class="product-item"
+                    routerLink='/productpage/{{product.id}}'>
+                    <img [src]="product.photoLink" alt="product-picture" class="product-picture"><br>
+                    <label class="product-name">{{product.name}}</label><br>
+                    <div style="display: flex; align-items: center;">
+                        <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="product.rating"></ngb-rating>
+                        <h6>{{product.rating}}</h6>
+                    </div>
+                    <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
+                    <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>
+                    <label *ngIf="product.availlability==false" class="availability-false">Немає в наявності</label><br>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="main-pg-txt">
-        <label>Нещодавно переглянуті:</label>
     </div>
 </div>

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Brand } from '../interfaces/brand.interface';
 import { Product } from '../interfaces/product.interface';
 import { Types } from '../interfaces/types.interface';
 import { BrandService } from '../services/brand.service';
+import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { TypesService } from '../services/types.service';
 
@@ -11,17 +12,23 @@ import { TypesService } from '../services/types.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
   searchValue:string="";
   types: Types[] = [];
   brands: Brand[] = [];
   products: Product[]=[];
+  cartQuantity:number=0;
 
   constructor(
     private typesService:TypesService,
     private brandService:BrandService,
-    private productService:ProductService
+    private productService:ProductService,
+    private cartService:CartService
   ){}
+
+  ngOnInit(): void {
+      this.cartQuantity=this.cartService.getCount()
+  }
 
   inputChange(){
     if(this.searchValue.length>=2){

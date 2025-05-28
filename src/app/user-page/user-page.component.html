@@ -1,1 +1,34 @@
 <app-nav-bar></app-nav-bar>
+<div id="user-page">
+    <div id="orders-div">
+        <div>
+            <label>Замовлення:</label><br>
+            <label style="margin-left: 40%; font-size:15px; color:lightgray" *ngIf="orders.length==0">Немає замовлень</label>
+            <div *ngIf="orders.length>0">
+                <div *ngFor="let order of orders; let i=index ">
+                    <label>Номер замовлення: {{order.orderId}} | Дата: {{order.orderDate | date: 'short'}} | Статус: {{order.status.statusName}}</label><br>
+                    <div style="display: flex;" *ngFor="let porder of order.partOrders; let i=index">
+                        <img style="width: 150px;height: auto;" [src]="porder.product.picture" alt="No-photo">
+                        <label> Назва: {{porder.product.name}} <br>Ціна: {{porder.price | currency:'UAH':'symbol-narrow'}}</label>
+                        <p>Кількість: </p>
+                                 <p style="margin-left: 10px; margin-right:10px;">{{porder.quantity}}</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="user-div">
+        <label class="user-data-label">Ваше Ім'я: {{user.firstName}}</label><br>
+        <hr class="user-data-hr">
+        <label class="user-data-label">Ваше Прізвище: {{user.lastName}}</label><br>
+        <hr class="user-data-hr">
+        <label *ngIf="user.father!=null" class="user-data-label">Ваше Ім'я по-батькові: {{user.father}}</label><br>
+        <hr class="user-data-hr">
+        <label class="user-data-label">Ваш Email: {{user.email}}</label><br>
+        <hr class="user-data-hr">
+        <label class="user-data-label">Ваш Номер Телефону: {{user.phone}}</label><br>
+        <hr class="user-data-hr">
+        <button id="exit-btn" (click)="exitUser()">Вийти з акаунту</button><br>
+    </div>
+</div>

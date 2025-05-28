@@ -2,6 +2,7 @@
     width: 15vw;
     height: 9vw;
     margin-left: 12vw;
+    cursor: pointer;
 }
 #search-input{
     width: 40vw;
@@ -49,6 +50,11 @@
     height: 60px;
     width: auto;
 }
+#image-search{
+    margin-left: 1vw;
+    height:30px;
+    width: auto;
+}
 #products-result-ul{
     list-style-type: none;
     margin-top: -50px;
@@ -74,4 +80,16 @@
 .types-li:hover{
     background-color: lightgray;
     cursor: pointer;
+}
+#cart-quantity{
+    position: relative;
+    margin-bottom: -18px;
+    margin-left: -35px;
+    background-color: black;
+    height: 20px;
+    width: 20px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
 }

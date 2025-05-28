@@ -1,10 +1,10 @@
 export interface Product{
-    article:Number,
+    article:number,
     name:string,
     picture:string,
-    type:Number,
-    price: Number,
+    type:number,
+    price: number,
     productInfo:string,
-    brandId:Number,
+    brandId:number,
     availability:boolean
 }
