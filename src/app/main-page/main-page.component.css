@@ -6,23 +6,66 @@
 .main-pg-txt{
     margin-left: 5%;
 }
+
+/*ad div elements*/
 #ad-div{
-    width: auto;
-    height: auto;
-    margin-left: 5%;
+  position: relative;
+  width: 50vw;
+  height: 25vw;
+  margin-left: 20%;
 }
-#ad-img{
-    width: 50vw;
-    height: auto;
+.viewer-image {
+  width: 50vw;
+  height: 25vw;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+.circle-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+.circle-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/**/
+
 #products-div{
     width: 60vw;
     margin-left: 20px;
 }
 .product-item {
-    width: 10.5vw;
-    min-width: 150px;
-    height: auto;
+  margin: 15px;
+  padding: 10px;
+  width: 180px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
 }
 .product-item:hover{
     background-color: lightgray;
@@ -33,7 +76,7 @@
     margin-top: 3.5%;
     width: 80%;
     min-width: 150px;
-    height: 80%;
+    height: auto;
     min-height: 150px;
     border-bottom: 1px solid lightgray;
 }

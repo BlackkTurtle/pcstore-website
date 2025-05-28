@@ -39,7 +39,7 @@ export class ProductService {
 
   getNew2Products(): Observable<ProductWithRating[]> {
     return this.http.get<ProductWithRating[]>(
-      `http://localhost:8002/api/Products/New3Products`
+      `http://localhost:8002/api/Product/GetLastNProductswithImage/${2}`
     );
   }
 
@@ -52,8 +52,8 @@ export class ProductService {
 
   }
   getMultipleProductsByIds(ids: number[]): Observable<ProductWithRating[]> {
-    const params = ids.reduce((acc, id) => acc.append('ints', id.toString()), new HttpParams());
+    const idsParam = ids.join(',');
 
-    return this.http.get<ProductWithRating[]>(`http://localhost:8002/api/Products/MultipleByIds`, { params });
+    return this.http.get<ProductWithRating[]>(`http://localhost:8002/api/Product/GetMultipleProductsByIds/${idsParam}`);
   }
 }

@@ -18,12 +18,20 @@
         </div>
         <div>
             <div id="ad-div">
-                <img id="ad-img" src="../../assets/images/ad-icon.jpg">
+                  <img [src]="advertisements[currentIndex].photoLink" class="viewer-image" alt="Image viewer" />
+
+                    <button class="circle-button left" (click)="prevImage()">
+                        &#xab;
+                    </button>
+
+                    <button class="circle-button right" (click)="nextImage()">
+                        &#xbb; 
+                    </button>
             </div>
-            <div class="main-pg-txt">
+            <div class="main-pg-txt" style="margin-top: 40px;">
                 <label>Нещодавно переглянуті:</label>
             </div>
-            <div style="display: flex; height: 20%; margin-left: 60px;">
+            <div style="display: flex; margin-left: 60px;">
                 <div *ngFor="let product of seenProducts; let i=index" class="product-item"
                     routerLink='/productpage/{{product.id}}'>
                     <img [src]="product.photoLink" alt="product-picture" class="product-picture"><br>

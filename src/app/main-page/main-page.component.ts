@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ProductService } from '../services/product.service';
 import { ProductWithRating } from '../DTOs/ProductWithRatingDTO.interface';
+import { AdvertisementService } from '../services/advertisement.service';
+import { AdvertisementDTO } from '../DTOs/advertisementDTO.interface';
 
 @Component({
   selector: 'app-main-page',
@@ -11,15 +13,36 @@ import { ProductWithRating } from '../DTOs/ProductWithRatingDTO.interface';
 export class MainPageComponent {
   constructor(
     private titleService:Title,
-    private productService:ProductService
+    private productService:ProductService,
+    private advertisementService:AdvertisementService
   ){
     titleService.setTitle("Pc Store")
   }
+
+  //Advertisement div
+  advertisements: AdvertisementDTO[] = [];
+  currentIndex: number = 0;
+
+  getAdvertisements(): void {
+    this.advertisementService.getOrderedAdvertisements().subscribe((result) => {
+      this.advertisements = result;
+    });
+  }
+
+  prevImage(): void {
+    this.currentIndex = (this.currentIndex - 1 + this.advertisements.length) % this.advertisements.length;
+  }
+
+  nextImage(): void {
+    this.currentIndex = (this.currentIndex + 1) % this.advertisements.length;
+  }
+  //
 
   new2Products:ProductWithRating[]=[]
   seenProducts:ProductWithRating[]=[]
 
   ngOnInit(): void {
+    this.getAdvertisements();
     this.productService.getNew2Products().subscribe((result) => {
       this.new2Products = result;
       console.log(this.new2Products)

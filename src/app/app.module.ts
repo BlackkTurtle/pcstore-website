@@ -27,6 +27,7 @@ import { CommentService } from './services/comment.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModelPageComponent } from './model-page/model-page.component';
 import { ModelService } from './services/model.service';
+import { AdvertisementService } from './services/advertisement.service';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ModelService } from './services/model.service';
     NgbModule
   ],
   providers: [
+    AdvertisementService,
     TypesService,
     BrandService,
     ProductService,
