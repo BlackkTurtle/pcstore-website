@@ -5,6 +5,7 @@ import { Brand } from '../interfaces/brand.interface';
 import { Product } from '../interfaces/product.interface';
 import { Types } from '../interfaces/types.interface';
 import { ProductWithRating } from '../DTOs/ProductDTOs/ProductWithRatingDTO.interface';
+import { FullProductDTO } from '../DTOs/ProductDTOs/FullProductDTO.interface';
 
 @Injectable()
 export class ProductService {
@@ -55,5 +56,9 @@ export class ProductService {
     const idsParam = ids.join(',');
 
     return this.http.get<ProductWithRating[]>(`http://localhost:8002/api/Product/GetMultipleProductsByIds/${idsParam}`);
+  }
+
+  getFullProduct(id:string | null): Observable<FullProductDTO>{
+    return this.http.get<FullProductDTO>(`http://localhost:8002/api/Product/GetFullProductById/${id}`);
   }
 }

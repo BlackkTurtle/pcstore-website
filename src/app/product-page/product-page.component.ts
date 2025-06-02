@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Comments } from '../interfaces/comment.interface';
 import { CartService } from '../services/cart.service';
+import { FullProductDTO } from '../DTOs/ProductDTOs/FullProductDTO.interface';
 
 @Component({
   selector: 'app-product-page',
@@ -13,47 +14,36 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./product-page.component.css']
 })
 export class ProductPageComponent implements OnInit {
-  product:any;
-  products:Product[]=[];
-  comments:Comments[]=[];
-  form:any;
-  rating:any;
+  product!: FullProductDTO;
 
   constructor(
-    private productService:ProductService,
-    private activatedRoute:ActivatedRoute,
-    private commentService:CommentService,
-    private fb: FormBuilder,
-    private cartService:CartService
-  ){
-    this.rating = 0;
-    this.form = this.fb.group({
-      rating: ['', Validators.required],
-    })
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute,
+  ) {
   }
 
-  addSeenProduct(){
-    if (localStorage.getItem("seenInts")==null){
-      var ints=[]
+  addSeenProduct() {
+    if (localStorage.getItem("seenInts") == null) {
+      var ints = []
       ints.push(this.activatedRoute.snapshot.paramMap.get('id'))
-      this.setItem("seenInts",ints)
-    }else{
-      var ints=this.getItem<any[]>("seenInts");
+      this.setItem("seenInts", ints)
+    } else {
+      var ints = this.getItem<any[]>("seenInts");
       if (ints.includes(this.activatedRoute.snapshot.paramMap.get('id'))) {
 
         ints = ints.filter(item => item !== this.activatedRoute.snapshot.paramMap.get('id'));
-        
+
         ints.unshift(this.activatedRoute.snapshot.paramMap.get('id'));
-        this.setItem("seenInts",ints)
+        this.setItem("seenInts", ints)
       }
-      else if (ints.length==5){
+      else if (ints.length == 5) {
         ints.unshift(this.activatedRoute.snapshot.paramMap.get('id'))
-        ints=ints.slice(0,5)
-        this.setItem("seenInts",ints)
+        ints = ints.slice(0, 5)
+        this.setItem("seenInts", ints)
       }
-      else{
+      else {
         ints.unshift(this.activatedRoute.snapshot.paramMap.get('id'))
-        this.setItem("seenInts",ints)
+        this.setItem("seenInts", ints)
       }
     }
   }
@@ -72,22 +62,15 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.addSeenProduct()
-    let id=this.activatedRoute.snapshot.paramMap.get('id')
-    this.productService.getProductsById(id).subscribe((result) => {
+    let id = this.activatedRoute.snapshot.paramMap.get('id')
+    this.productService.getFullProduct(id).subscribe((result) => {
       this.product = result;
-    });
-    this.commentService.getcommentsByArticle(id).subscribe((result) => {
-      this.comments = result;
-      let sum = 0;
-      for (let i = 0; i < this.comments.length; i++) {
-        sum += this.comments[i].stars;
-      }
-      this.rating = this.comments.length > 0 ? sum / this.comments.length : 0;
     });
   }
 
-  addProductToCart(){
-    this.cartService.addtoCart(this.product)
-    window.alert("Added item to the cart!")
+  activeTab: string = 'main';
+
+  setTab(tab: string): void {
+    this.activeTab = tab;
   }
 }

@@ -4,49 +4,12 @@
 
     <div id="check-div">
         <div>
-            <label>Типи:</label><br>
-            <input type="text" [(ngModel)]="searchTypes" placeholder="Пошук..." id="search-input" (input)="typesinputChange()"/><br>
-
-            <div class="checkboxes-scroll">
-                <label>Вибрані Типи:</label>
-                <div *ngFor="let selectedtype of selectedTypes; let i=index ">
-                    <input type="checkbox" (change)="selectedtypesChangedCheckbox(i)" checked="true">
-                    {{selectedtype.typeName}}
-                </div><br>
-                <label>Невибрані Типи:</label>
-                <div *ngFor="let type of types | orderBy:sortTypes; let i=index" >
-                    <input type="checkbox" (change)="typesChangedCheckbox(i)">
-                    {{type.typeName}}
-                </div>
-            </div>
-            <hr class="check-line">
-        </div>
-
-        <div>
-            <label>Бренди:</label><br>
-            <input type="text" [(ngModel)]="searchBrand" placeholder="Пошук..." id="search-input" (input)="brandsinputChange()"/><br>
-
-            <div class="checkboxes-scroll">
-                <label>Вибрані бренди:</label>
-                <div *ngFor="let selectedbrand of selectedBrands; let i=index ">
-                    <input type="checkbox" (change)="selectedbrandsChangedCheckbox(i)" checked="true">
-                    {{selectedbrand.brandName}}
-                </div><br>
-                <label>Невибрані Бренди:</label>
-                <div *ngFor="let brand of brands | orderBy:sortBrands; let i=index" >
-                    <input type="checkbox" (change)="brandsChangedCheckbox(i)">
-                    {{brand.brandName}}
-                </div>
-            </div>
-            <hr class="check-line">
-        </div>
-        <div>
             <label>Ціна:</label><br>
             Від:
             <input type="number" class="price-input" [(ngModel)]="minPrice">
             До:
             <input type="number" class="price-input" [(ngModel)]="maxPrice">
-            <button id="price-button" (click)="setProductsByTypesAndBrands()">OK</button>
+            <button id="price-button">OK</button>
             <hr class="check-line">
         </div>
     </div>

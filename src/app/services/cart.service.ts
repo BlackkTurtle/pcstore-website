@@ -2,28 +2,25 @@ import { Injectable } from '@angular/core';
 import { PartOrder } from '../interfaces/partorder.interface';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../interfaces/product.interface';
+import { CartItemDTO } from '../DTOs/OtherDTOs/CartItemDTO.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  public cartItemList : PartOrder[] =[]
+  public cartItemList : CartItemDTO[] =[]
 
   constructor() { }
   getcartItemList(){
     return this.cartItemList;
   }
-  addtoCart(product : Product){
-    let index=this.cartItemList.findIndex(x=>x.article==product.article)
+  addtoCart(id : number){
+    let index=this.cartItemList.findIndex(x=>x.id==id)
     if (index==-1){
-      let porder: PartOrder = {
-        porderId:0,
-        article: product.article,
+      let porder: CartItemDTO = {
+        id:id,
         quantity: 1,
-        price: product.price,
-        product: product,
-        orderId:0
       }
       this.cartItemList.push(porder);
     }
@@ -32,11 +29,7 @@ export class CartService {
     }
   }
   getTotalPrice() : number{
-    let grandTotal = 0;
-    this.cartItemList.map((a:PartOrder)=>{
-      grandTotal += a.price*a.quantity;
-    })
-    return grandTotal;
+    return 0;
   }
   getCount() : number{
     return this.cartItemList.length;

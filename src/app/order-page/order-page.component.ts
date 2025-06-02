@@ -78,7 +78,7 @@ export class OrderPageComponent implements OnInit{
         });
       });
     }
-    this.pOrders=this.cartService.getcartItemList();
+    this.pOrders=[];
   }
 
   getProductsSum(){
@@ -86,7 +86,6 @@ export class OrderPageComponent implements OnInit{
   }
 
   onAddQuantity(index:number){
-    this.cartService.addtoCart(this.pOrders[index].product)
   }
 
   onRemoveQuantity(index:number){
@@ -98,7 +97,6 @@ export class OrderPageComponent implements OnInit{
       (res: any) => {
           window.alert("Замовлення відправлено!")
           this.cartService.clearCart();
-          this.pOrders=this.cartService.cartItemList;
           this.errorMessage = res;
       }
     );

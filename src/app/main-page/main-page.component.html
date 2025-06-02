@@ -9,7 +9,7 @@
                 <label class="product-name">{{product.name}}</label><br>
                 <div style="display: flex; align-items: center;">
                     <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="product.rating"></ngb-rating>
-                    <h6>{{product.rating}}</h6>
+                    <h6>{{ product.rating| number: '1.1-1' }}</h6>
                 </div>
                 <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
                 <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>
@@ -38,7 +38,7 @@
                     <label class="product-name">{{product.name}}</label><br>
                     <div style="display: flex; align-items: center;">
                         <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="product.rating"></ngb-rating>
-                        <h6>{{product.rating}}</h6>
+                        <h6>{{ product.rating| number: '1.1-1' }}</h6>
                     </div>
                     <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
                     <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>

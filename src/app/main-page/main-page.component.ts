@@ -55,6 +55,7 @@ export class MainPageComponent {
         (response) => {
           this.seenProducts = response;
           console.log(this.seenProducts)
+          console.log(this.seenProducts[0].photoLink)
         },
         (error) => {
           console.error('Error fetching products:', error);

@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"",component:MainPageComponent},
   {path:"orderpage",component:OrderPageComponent},
   {path:"userpage",component:UserPageComponent},
-  {path:"searchpage/:searchmethod/:searchstr/:typeid/:brandid",component:SearchPageComponent},
+  {path:"searchpage",component:SearchPageComponent},
   {path:"productpage/:id",component:ProductPageComponent},
   {path:"authpage",component:AuthPageComponent},
   {path:"reggpage",component:ReggPageComponent},

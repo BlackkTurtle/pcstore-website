@@ -7,6 +7,7 @@ import { CategoryIdNameDTO } from '../DTOs/CategoryDTOs/categoryIdNameDTO.interf
 import { GetBrandDTO } from '../DTOs/BrandDTOs/getBrandDTO.interface';
 import { ProductIdNameDTO } from '../DTOs/ProductDTOs/ProductIdNameDTO.interface';
 import { NavbarService } from '../services/navbar.service';
+import { CatalogService } from '../services/catalog.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -22,24 +23,18 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private cartService:CartService,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private catalogService: CatalogService
   ){}
 
   ngOnInit(): void {
       this.cartQuantity=this.cartService.getCount()
   }
 
-  inputChange(){
-    if(this.searchValue.length>=2){
-      this.navbarService.getSearchBarResultByNameLike(this.searchValue).subscribe((result) => {
-        this.types = result.categorys;
-        this.brands = result.brands;
-        this.products = result.products;
-      });
-    }else{
-      this.types=[];
-      this.brands=[];
-      this.products=[];
-    }
+  searchBarEnter():void{
+    this.catalogService.searchStr = this.searchValue;
+    this.catalogService.categoryId = 0;
+    this.catalogService.characteristicId = 0;
+    this.catalogService.productCaharacteristicName = "";
   }
 }

@@ -1,0 +1,56 @@
+<div style="width: 100%; height: auto; display: flex; gap: 2rem;">
+    <div class="image-gallery">
+        <!-- Main image -->
+        <div class="main-image">
+            <img [src]="selectedImage" alt="Product image" />
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="thumbnails">
+            <img *ngFor="let img of product.images" [src]="img" [class.selected]="img === selectedImage"
+                (click)="selectImage(img)" alt="Thumbnail" />
+        </div>
+    </div>
+
+    <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <div style="display: flex;flex-direction: row; align-items: center;">
+            <p class="price">{{ product.price | currency:'UAH':'symbol-narrow'}}</p>
+            <div style="display: flex; align-items: center; margin-left: 20px;">
+                <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="product.rating"></ngb-rating>
+                <h6>{{ product.rating| number: '1.1-1' }}</h6>
+            </div>
+        </div>
+
+        <div style="display: flex;flex-direction: row; align-items: center;">
+
+            <button (click)="addToCart()" [disabled]="!product.availlability" class="add-to-cart">
+                Додати в кошик
+            </button>
+
+            <p class="availability" [class.in-stock]="product.availlability"
+                [class.out-of-stock]="!product.availlability">
+                {{ product.availlability ? 'Є в наявності' : 'Немає в наявності' }}
+            </p>
+
+        </div>
+
+        <h3 class="description">{{ product.description }}</h3>
+    </div>
+</div>
+<div class="specs-wrapper">
+  <h2>Характеристики</h2>
+  <h3 class="product-name">{{ product.name }}</h3>
+
+  <table class="specs-table">
+    <tr>
+      <td class="spec-title">Тип</td>
+      <td class="spec-value is-linkable" routerLink="/searchpage" (click)="categoryRouterClick()">{{ product.categoryIdNameDTO.name }}</td>
+    </tr>
+    <tr *ngFor="let spec of product.productCharacteristics">
+      <td class="spec-title">{{ spec.characteristicName }}</td>
+      <td *ngIf="spec.linkable" class="spec-value is-linkable" routerLink="/searchpage" (click)="characteristicRouterClick(spec.characteristicId,spec.name)">{{ spec.name }}</td>
+      <td *ngIf="!spec.linkable" class="spec-value">{{ spec.name }}</td>
+    </tr>
+  </table>
+</div>

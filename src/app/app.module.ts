@@ -29,6 +29,9 @@ import { ModelPageComponent } from './model-page/model-page.component';
 import { ModelService } from './services/model.service';
 import { AdvertisementService } from './services/advertisement.service';
 import { NavbarService } from './services/navbar.service';
+import { MainProductPageComponent } from './product-page-components/main-product-page/main-product-page.component';
+import { CommentsProductPageComponent } from './product-page-components/comments-product-page/comments-product-page.component';
+import { CatalogService } from './services/catalog.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,9 @@ import { NavbarService } from './services/navbar.service';
     ProductPageComponent,
     AuthPageComponent,
     ReggPageComponent,
-    ModelPageComponent
+    ModelPageComponent,
+    MainProductPageComponent,
+    CommentsProductPageComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,7 @@ import { NavbarService } from './services/navbar.service';
     CommentService,
     ModelService,
     NavbarService,
+    CatalogService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]

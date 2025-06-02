@@ -99,6 +99,7 @@
     margin-left: 2%;
 }
 #star-rating {
-    font-size: 2vw;
+    font-size: 1.7vw;
+    padding-right: 2px;
     color: #ffc107;
 }

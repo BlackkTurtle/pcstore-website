@@ -1,38 +1,23 @@
 <app-nav-bar></app-nav-bar>
 
+<div class="product-page">
+  <h1>{{ product.name }}</h1>
+  <p>Код товару: <strong>{{ product.id }}</strong></p>
 
-  <div id="product-page">
-    <div id="main">
+  <nav class="tabs">
+    <button (click)="setTab('main')" [class.active]="activeTab === 'main'">Огляд</button>
+    <button (click)="setTab('comments')" [class.active]="activeTab === 'comments'">
+      Відгуки та питання <span class="badge">{{product.comments.length+product.reviews.length}}</span>
+    </button>
+  </nav>
 
-    <img src="{{product.picture}}" id="img_1">
-  </div>
-
-
-  <div id="aside">
-    <label>{{product.name}}</label>
-      <br>
-      <!--STAR-->
-      <div style="display: flex; align-items: center;">
-        <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="rating"></ngb-rating><h6>{{rating}}</h6>
-      </div>
-      <b><label id="price">{{product.price | currency:'UAH':'symbol-narrow'}}</label></b><br>
-    <button id="order-button" [disabled]="!product.availability" (click)="addProductToCart()">У кошик</button><br>
-        <label *ngIf="product.availability==true" id="availability-true">Є в наявності</label>
-        <label *ngIf="product.availability==false" id="availability-false">Немає в наявності</label>
-  </div><br>
-<div id="inform">
-<label>Характеристики: </label><br>
-<label style="font-size: 15px; margin-left:50px; color:gray;">{{product.productInfo}}</label>
-</div>
-
-<div id="Feedback">
-  <div *ngFor="let comment of comments; let i=index ">
-    <label>Користувач: {{comment.userId}} | Дата: {{comment.commentDate| date: 'short'}}</label>
-    <div style="display: flex; align-items: center;">
-      <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="comment.stars"></ngb-rating><h6>{{comment.stars}}</h6>
-      <h5 style="margin-left: 20px;">{{comment.comment1}}</h5>
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'main'">
+      <app-main-product-page [product]="product"></app-main-product-page>
     </div>
-    <hr>
-</div>
-</div>
+    <div *ngIf="activeTab === 'comments'">
+      <app-comments-product-page [product]="product"></app-comments-product-page>
+    </div>
+
+  </div>
 </div>
