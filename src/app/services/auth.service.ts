@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   logInUser(email: string, password: string): Observable<any> {
     const obj = {
@@ -29,15 +29,15 @@ export class AuthService {
     return of({ error: true, message: errorMessage });
   }
 
-  registerUser(email: string, firstName:string,lastName:string,father:string,phone:string,password: string,confirmPassword:string): Observable<any> {
+  registerUser(email: string, firstName: string, lastName: string, father: string, phone: string, password: string, confirmPassword: string): Observable<any> {
     const obj = {
       email: email,
-      firstName:firstName,
-      lastName:lastName,
-      father:father,
-      phone:phone,
+      firstName: firstName,
+      lastName: lastName,
+      father: father,
+      phone: phone,
       password: password,
-      confirmPassword:confirmPassword
+      confirmPassword: confirmPassword
     };
 
     return this.http.post(`http://localhost:8001/api/User/register`, obj).pipe(
@@ -50,5 +50,15 @@ export class AuthService {
     return this.http.get(`http://localhost:8001/api/User/`).pipe(
       catchError(this.handleError)
     );
+  }
+
+  checkAuth(): Observable<any> {
+
+    return this.http.get(`http://localhost:8001/api/User/check-auth`);
+  }
+
+  logout(): Observable<any> {
+
+    return this.http.post(`http://localhost:8001/api/User/logout`, null);
   }
 }

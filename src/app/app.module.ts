@@ -21,7 +21,6 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReggPageComponent } from './regg-page/regg-page.component';
 import { AuthService } from './services/auth.service';
-import { AuthInterceptor } from './auth-interceptor.interceptor';
 import { OrderService } from './services/order.service';
 import { CommentService } from './services/comment.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,6 +31,10 @@ import { NavbarService } from './services/navbar.service';
 import { MainProductPageComponent } from './product-page-components/main-product-page/main-product-page.component';
 import { CommentsProductPageComponent } from './product-page-components/comments-product-page/comments-product-page.component';
 import { CatalogService } from './services/catalog.service';
+import { CredentialsInterceptor } from './interceptors/credential.interceptor';
+import { CookieService } from './services/cookie.service';
+import { ReviewsComponent } from './product-page-components/comment-components/reviews/reviews.component';
+import { CommentsAndResponsesComponent } from './product-page-components/comment-components/comments-and-responses/comments-and-responses.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { CatalogService } from './services/catalog.service';
     ReggPageComponent,
     ModelPageComponent,
     MainProductPageComponent,
-    CommentsProductPageComponent
+    CommentsProductPageComponent,
+    ReviewsComponent,
+    CommentsAndResponsesComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,12 @@ import { CatalogService } from './services/catalog.service';
     ModelService,
     NavbarService,
     CatalogService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CredentialsInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

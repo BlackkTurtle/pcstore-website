@@ -29,35 +29,3 @@
         border-radius: 10px;
     }
 }
-
-.review-section {
-    padding: 1rem;
-}
-
-.review-card {
-    border-bottom: 1px solid #ddd;
-    padding: 1rem 0;
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-}
-
-#star-rating {
-    font-size: 2.5rem;
-    padding-right: 2px;
-    color: #ffc107;
-}
-
-.review-dates {
-    font-size: 0.8rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.review-content {
-    font-size: 0.95rem;
-    white-space: pre-wrap;
-}

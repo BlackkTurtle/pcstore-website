@@ -7,53 +7,13 @@
             Питання <span class="badge">{{product.comments.length}}</span>
         </button>
     </nav>
-</div>
 
-<div *ngIf="activeTab === 'reviews'" style="width: 90vw; margin-left: 50px;">
-    <div class="card p-3 mb-3">
-        <h5>Залишити відгук</h5>
-        <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
-
-            <div class="mb-3">
-                <label class="form-label">Оцінка:</label>
-                <ngb-rating formControlName="rating" [max]="5" id="star-rating"></ngb-rating>
-                <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-danger">
-                    Виберіть оцінку.
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="content" class="form-label">Ваш відгук:</label>
-                <textarea id="content" class="form-control" formControlName="content" rows="5"
-                    placeholder="Напишіть ваш відгук..." maxlength="500"></textarea>
-                <div class="text-muted text-end">{{ contentLength }}/500 символів</div>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="background-color: black; border: none;" [disabled]="reviewForm.invalid">Надіслати</button>
-        </form>
-    </div>
-    <div class="review-section">
-        <div *ngFor="let review of product.reviews" class="review-card">
-            <div class="review-header">
-                <strong>{{ review.fullName }}</strong>
-                <div style="display: flex; align-items: center; margin-left: 20px; position: absolute; right: 8%;">
-                    <ngb-rating id="star-rating" [max]="5" [readonly]="true" [rate]="review.rating"></ngb-rating>
-                    <h6>{{ review.rating| number: '1.1-1' }}</h6>
-                </div>
-            </div>
-            <div class="review-dates">
-                <small>Created: {{ review.createdDate | date: 'short' }}</small>
-                <ng-container *ngIf="review.dateModified !== null">
-                    <small> | Modified: {{ review.dateModified | date: 'short' }}</small>
-                </ng-container>
-            </div>
-            <p class="review-content">{{ review.content }}</p>
+    <div class="tab-content">
+        <div *ngIf="activeTab === 'reviews'">
+            <app-reviews [product]="product"></app-reviews>
         </div>
-    </div>
-</div>
-
-<div *ngIf="activeTab === 'comments'">
-    <div>
-
+        <div *ngIf="activeTab === 'comments'">
+            <app-comments-and-responses [product]="product"></app-comments-and-responses>
+        </div>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
+import { CookieService } from '../services/cookie.service';
 
 @Component({
   selector: 'app-user-page',
@@ -11,32 +12,37 @@ import { OrderService } from '../services/order.service';
 })
 export class UserPageComponent implements OnInit {
 
-  user:any;
+  user: any;
 
   constructor(
-    private titleService:Title,
-    private router:Router,
-    private authService:AuthService,
-    private orderService:OrderService
-  ){
+    private titleService: Title,
+    private router: Router,
+    private authService: AuthService,
+    private orderService: OrderService,
+    private cookieService: CookieService
+  ) {
     titleService.setTitle("Pc Store:User Page")
   }
 
   ngOnInit(): void {
-      if(localStorage.getItem('token')===null){
-        this.router.navigate(['/authpage']);
-      }
+    this.authService.checkAuth().subscribe({
+      next: () => console.log('User is authenticated'),
+      error: () => this.router.navigate(['/authpage'])
+    });
 
-      this.authService.getUser().subscribe((result) => {
-        this.user = result;
-      });
+    this.authService.getUser().subscribe((result) => {
+      this.user = result;
+    });
 
-      this.orderService.getOrdersByUser().subscribe((result) => {
-      });
+    this.orderService.getOrdersByUser().subscribe((result) => {
+    });
   }
 
-  exitUser(){
-    localStorage.clear();
+  exitUser() {
+    this.authService.logout().subscribe({
+      next: () => console.log('User logged out'),
+      error: () => console.log('Failed to log out')
+    });
     this.router.navigate(['/']);
   }
 }
