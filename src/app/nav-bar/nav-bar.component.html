@@ -18,4 +18,7 @@
         <img src="../../assets/images/shopping-cart-icon.jpg" id="shopping-cart" alt="Shopping Cart Icon" />
     </a>
     <div id="cart-quantity">{{cartQuantity}}</div>
+    <a *ngIf="adminAuthenticated" routerLink="/adminpage">
+        <img src="../../assets/images/db-icon.png" id="db-icon" alt="DB Icon" />
+    </a>
 </header>

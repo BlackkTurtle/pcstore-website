@@ -9,6 +9,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { ReggPageComponent } from './regg-page/regg-page.component';
 import { ModelPageComponent } from './model-page/model-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const routes: Routes = [
   {path:"",component:MainPageComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:"productpage/:id",component:ProductPageComponent},
   {path:"authpage",component:AuthPageComponent},
   {path:"reggpage",component:ReggPageComponent},
-  {path:"modelpage",component:ModelPageComponent}
+  {path:"modelpage",component:ModelPageComponent},
+  {path:"adminpage",component:AdminPageComponent}
 ];
 
 @NgModule({

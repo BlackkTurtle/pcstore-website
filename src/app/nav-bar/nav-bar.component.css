@@ -55,6 +55,11 @@
     height:30px;
     width: auto;
 }
+#db-icon{
+    height: 50px;
+    width: auto;
+    margin-left: 1vw;
+}
 #products-result-ul{
     list-style-type: none;
     margin-top: -50px;

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Comments } from '../interfaces/comment.interface';
 import { ReviewDTO } from '../DTOs/CommentDTOs/ReviewDTO.interface';
 import { CommentDTO } from '../DTOs/CommentDTOs/CommentDTO.interface';
+import { CommentReviewDTO } from '../DTOs/CommentDTOs/commentReviewDTO.interface';
 
 @Injectable()
 export class CommentService {
@@ -51,6 +52,15 @@ export class CommentService {
     }
 
     return this.http.put<CommentDTO>(`http://localhost:8002/api/Comment/UpdateComment`, body)
+  }
+
+  updateCommentStatuses(body:CommentReviewDTO[]): Observable<any> {
+
+    return this.http.put<CommentDTO>(`http://localhost:8002/api/Comment/UpdateCommentStatuses`, body)
+  }
+
+  getCommentReviews(): Observable<CommentReviewDTO> {
+    return this.http.get<CommentReviewDTO>(`http://localhost:8002/api/Comment/GetCommentReviews`)
   }
 
   deleteComment(id: number): Observable<any> {

@@ -8,6 +8,7 @@ import { GetBrandDTO } from '../DTOs/BrandDTOs/getBrandDTO.interface';
 import { ProductIdNameDTO } from '../DTOs/ProductDTOs/ProductIdNameDTO.interface';
 import { NavbarService } from '../services/navbar.service';
 import { CatalogService } from '../services/catalog.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -20,15 +21,25 @@ export class NavBarComponent implements OnInit {
   brands: GetBrandDTO[] = [];
   products: ProductIdNameDTO[]=[];
   cartQuantity:number=0;
+  adminAuthenticated!:boolean;
 
   constructor(
     private cartService:CartService,
     private navbarService: NavbarService,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private authService:AuthService
   ){}
 
   ngOnInit(): void {
       this.cartQuantity=this.cartService.getCount()
+      this.authService.checkAdmin().subscribe({
+      next: () => {
+        this.adminAuthenticated = true;
+      },
+      error: () => {
+        this.adminAuthenticated = false;
+      }
+    });
   }
 
   searchBarEnter():void{

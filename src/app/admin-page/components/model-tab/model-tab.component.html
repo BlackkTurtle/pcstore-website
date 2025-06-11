@@ -1,0 +1,31 @@
+<div class="grid-container">
+    <div class="grid-item" *ngFor="let comment of comments">
+        <h5>Comment #{{ comment.id }}</h5>
+        <p>{{ comment.content }}</p>
+        <p><strong>Товар:</strong>
+            <a (click)="goToProduct(comment.productId)">#{{ comment.productId }} клікніть щоб перейти</a>
+        </p>
+
+        <div class="status">
+            <span [ngClass]="{'valid': comment.valid, 'invalid': !comment.valid}">
+                {{ comment.valid ? 'Valid' : 'Invalid' }}
+            </span>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-success" (click)="updateValid(comment.id, true)" [disabled]="comment.valid === true">
+                Mark Valid
+            </button>
+
+            <button class="btn btn-danger" (click)="updateValid(comment.id, false)"
+                [disabled]="comment.valid === false">
+                Mark Invalid
+            </button>
+        </div>
+    </div>
+</div>
+<div class="bottom-button-container">
+    <button class="btn btn-primary" [disabled]="checkOnBottomButton()" (click)="onBottomButtonClick()">
+        Finalize Review
+    </button>
+</div>

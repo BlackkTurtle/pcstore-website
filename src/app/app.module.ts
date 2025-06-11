@@ -35,6 +35,9 @@ import { CredentialsInterceptor } from './interceptors/credential.interceptor';
 import { CookieService } from './services/cookie.service';
 import { ReviewsComponent } from './product-page-components/comment-components/reviews/reviews.component';
 import { CommentsAndResponsesComponent } from './product-page-components/comment-components/comments-and-responses/comments-and-responses.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { ModelTabComponent } from './admin-page/components/model-tab/model-tab.component';
+import { ProductListTabComponent } from './admin-page/components/product-list-tab/product-list-tab.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { CommentsAndResponsesComponent } from './product-page-components/comment
     MainProductPageComponent,
     CommentsProductPageComponent,
     ReviewsComponent,
-    CommentsAndResponsesComponent
+    CommentsAndResponsesComponent,
+    AdminPageComponent,
+    ModelTabComponent,
+    ProductListTabComponent
   ],
   imports: [
     BrowserModule,

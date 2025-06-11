@@ -57,6 +57,11 @@ export class AuthService {
     return this.http.get(`http://localhost:8001/api/User/check-auth`);
   }
 
+  checkAdmin(): Observable<any> {
+
+    return this.http.get(`http://localhost:8001/api/User/check-admin`);
+  }
+
   logout(): Observable<any> {
 
     return this.http.post(`http://localhost:8001/api/User/logout`, null);
