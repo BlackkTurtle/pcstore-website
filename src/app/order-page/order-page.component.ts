@@ -7,57 +7,58 @@ import { Product } from '../interfaces/product.interface';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { OrderService } from '../services/order.service';
+import { CartItemDTO } from '../DTOs/OtherDTOs/CartItemDTO.interface';
 
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
   styleUrls: ['./order-page.component.css']
 })
-export class OrderPageComponent implements OnInit{
+export class OrderPageComponent implements OnInit {
 
-  errorMessage:string='';
-  reggform:any;
-  user:any;
-  pOrders:PartOrder[]=[];
+  errorMessage: string = '';
+  reggform: any;
+  user: any;
+  pOrders: CartItemDTO[] = [];
 
   constructor(
-    private titleService:Title,
-    private authService:AuthService,
-    private router:Router,
-    private orderService:OrderService,
-    private cartService:CartService
-  ){
+    private titleService: Title,
+    private authService: AuthService,
+    private router: Router,
+    private orderService: OrderService,
+    private cartService: CartService
+  ) {
     titleService.setTitle("Pc Store:Order Page")
 
     //reg form
-    this.reggform=new FormGroup({
-      email:new FormControl('',[
+    this.reggform = new FormGroup({
+      email: new FormControl('', [
         Validators.required,
         Validators.email
       ]),
-      phone:new FormControl('',[
+      phone: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(\+380|0)\d{9}$/)
       ]),
-      surname:new FormControl('',[
+      surname: new FormControl('', [
         Validators.required,
         Validators.pattern(
           /^[A-Za-z]+$/
         )
       ]),
-      firstname:new FormControl('',[
+      firstname: new FormControl('', [
         Validators.required,
         Validators.pattern(
           /^[A-Za-z]+$/
         )
       ]),
-      address:new FormControl('',[
+      address: new FormControl('', [
         Validators.required,
         Validators.pattern(
           /^[A-Za-z]+$/
         )
       ]),
-      father:new FormControl('',[
+      father: new FormControl('', [
         Validators.pattern(
           /^[A-Za-z]+$/
         )
@@ -66,39 +67,23 @@ export class OrderPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('token')!==null){
-      this.authService.getUser().subscribe((result) => {
-        this.user = result;
-        this.reggform.patchValue({
-          email: this.user.email,
-          phone: this.user.phone,
-          surname: this.user.lastName,
-          firstname: this.user.firstName,
-          father: this.user.father
-        });
-      });
-    }
-    this.pOrders=[];
+    this.pOrders = this.cartService.cartItemList;
   }
 
-  getProductsSum(){
+  getProductsSum() {
     return this.cartService.getTotalPrice();
   }
 
-  onAddQuantity(index:number){
+  onAddQuantity(index: number) {
+    this.cartService.addCartItem(index);
   }
 
-  onRemoveQuantity(index:number){
+  onRemoveQuantity(index: number) {
     this.cartService.removeCartItem(index);
   }
 
-  onSubmit(){
-    this.orderService.postOrder(this.reggform.get('email').value,this.reggform.get('address').value,this.pOrders).subscribe(
-      (res: any) => {
-          window.alert("Замовлення відправлено!")
-          this.cartService.clearCart();
-          this.errorMessage = res;
-      }
-    );
+  onSubmit() {
+    window.alert("Order submited!")
+    this.cartService.clearCart();
   }
 }

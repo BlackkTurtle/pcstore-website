@@ -6,9 +6,9 @@
             <label style="margin-left: 40%; font-size:15px; color:lightgray" *ngIf="pOrders.length==0">No selected products</label><br>
             <div *ngIf="pOrders.length>0">
                 <div style="display: flex;" *ngFor="let porder of pOrders; let i=index">
-                        <img style="width: 150px;height: auto;" [src]="porder.product.picture" alt="No-photo">
+                        <img style="width: 150px;height: auto;" [src]="porder.photoLink" alt="No-photo">
                         <div>
-                            <label> Name: {{porder.product.name}} <br>Price: {{porder.price | currency:'UAH':'symbol-narrow'}}</label><br>
+                            <label> Name: {{porder.name}} <br>Price: {{porder.price | currency:'UAH':'symbol-narrow'}}</label><br>
                             <div id="quantity-div">
                                 <p>Quantity: </p>
                                 <button (click)="onAddQuantity(i)" class="quantity-btn">+</button>

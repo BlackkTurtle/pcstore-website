@@ -9,39 +9,45 @@ import { CartItemDTO } from '../DTOs/OtherDTOs/CartItemDTO.interface';
 })
 export class CartService {
 
-  public cartItemList : CartItemDTO[] =[]
+  public cartItemList: CartItemDTO[] = []
+
+  private cartChanged = new BehaviorSubject<CartItemDTO[]>([]);
+  cartChanged$ = this.cartChanged.asObservable();
 
   constructor() { }
-  getcartItemList(){
+  getcartItemList() {
     return this.cartItemList;
   }
-  addtoCart(id : number){
-    let index=this.cartItemList.findIndex(x=>x.id==id)
-    if (index==-1){
-      let porder: CartItemDTO = {
-        id:id,
-        quantity: 1,
-      }
+  addtoCart(porder: CartItemDTO) {
+    let index = this.cartItemList.findIndex(x => x.id == porder.id)
+    if (index == -1) {
       this.cartItemList.push(porder);
     }
-    else{
-      this.cartItemList[index].quantity+=1
+    else {
+      this.cartItemList[index].quantity += 1
     }
+
+    this.cartChanged.next(this.cartItemList);
   }
-  getTotalPrice() : number{
-    return 0;
+  getTotalPrice(): number {
+    return this.cartItemList.reduce((total, item) => {
+      return total + (item.price * item.quantity);
+    }, 0);
   }
-  getCount() : number{
+  getCount(): number {
     return this.cartItemList.length;
   }
-  removeCartItem(index:number){
-    if(this.cartItemList[index].quantity==1){
+  addCartItem(index:number){
+    this.cartItemList[index].quantity+=1;
+  }
+  removeCartItem(index: number) {
+    if (this.cartItemList[index].quantity == 1) {
       this.cartItemList.splice(index, 1);
-    }else{
-      this.cartItemList[index].quantity-=1;
+    } else {
+      this.cartItemList[index].quantity -= 1;
     }
   }
-  clearCart(){
-    this.cartItemList=[]
+  clearCart() {
+    this.cartItemList = []
   }
 }

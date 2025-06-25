@@ -16,23 +16,26 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  searchValue:string="";
+  searchValue: string = "";
   types: CategoryIdNameDTO[] = [];
   brands: GetBrandDTO[] = [];
-  products: ProductIdNameDTO[]=[];
-  cartQuantity:number=0;
-  adminAuthenticated!:boolean;
+  products: ProductIdNameDTO[] = [];
+  cartQuantity: number = 0;
+  adminAuthenticated!: boolean;
 
   constructor(
-    private cartService:CartService,
+    private cartService: CartService,
     private navbarService: NavbarService,
     private catalogService: CatalogService,
-    private authService:AuthService
-  ){}
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
-      this.cartQuantity=this.cartService.getCount()
-      this.authService.checkAdmin().subscribe({
+    this.cartService.cartChanged$.subscribe(cart => {
+      this.cartQuantity = this.cartService.getCount();
+    });
+    this.cartQuantity = this.cartService.getCount()
+    this.authService.checkAdmin().subscribe({
       next: () => {
         this.adminAuthenticated = true;
       },
@@ -42,7 +45,7 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  searchBarEnter():void{
+  searchBarEnter(): void {
     this.catalogService.searchStr = this.searchValue;
     this.catalogService.categoryId = 0;
     this.catalogService.characteristicId = 0;

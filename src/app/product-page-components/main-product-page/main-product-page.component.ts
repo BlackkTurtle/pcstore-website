@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { CartItemDTO } from 'src/app/DTOs/OtherDTOs/CartItemDTO.interface';
 import { FullProductDTO } from 'src/app/DTOs/ProductDTOs/FullProductDTO.interface';
 import { CartService } from 'src/app/services/cart.service';
 import { CatalogService } from 'src/app/services/catalog.service';
@@ -12,7 +14,7 @@ export class MainProductPageComponent {
   @Input() product!: FullProductDTO;
 
   constructor(private catalogService: CatalogService,
-    private cartService:CartService
+    private cartService: CartService
   ) {
 
   }
@@ -34,7 +36,14 @@ The manufacturing date of the specific unit is indicated on the box and/or on th
   }
 
   addToCart(): void {
-    this.cartService.addtoCart(this.product.id);
+    let porder: CartItemDTO = {
+      id: this.product.id,
+      name: this.product.name,
+      photoLink: this.product.images[0],
+      price: this.product.price,
+      quantity: 1
+    };
+    this.cartService.addtoCart(porder);
   }
 
   categoryRouterClick(): void {
@@ -44,7 +53,7 @@ The manufacturing date of the specific unit is indicated on the box and/or on th
     this.catalogService.productCaharacteristicName = "";
   }
 
-  characteristicRouterClick(id:number, name:string): void {
+  characteristicRouterClick(id: number, name: string): void {
     this.catalogService.searchStr = "";
     this.catalogService.categoryId = this.product.categoryIdNameDTO.id;
     this.catalogService.characteristicId = id;
