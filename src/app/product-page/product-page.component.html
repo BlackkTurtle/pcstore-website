@@ -2,12 +2,12 @@
 
 <div class="product-page">
   <h1>{{ product.name }}</h1>
-  <p>Код товару: <strong>{{ product.id }}</strong></p>
+  <p>Code: <strong>{{ product.id }}</strong></p>
 
   <nav class="tabs">
-    <button (click)="setTab('main')" [class.active]="activeTab === 'main'">Огляд</button>
+    <button (click)="setTab('main')" [class.active]="activeTab === 'main'">Main</button>
     <button (click)="setTab('comments')" [class.active]="activeTab === 'comments'">
-      Відгуки та питання <span class="badge">{{product.comments.length+product.reviews.length}}</span>
+      Reviews and Comments <span class="badge">{{product.comments.length+product.reviews.length}}</span>
     </button>
   </nav>
 

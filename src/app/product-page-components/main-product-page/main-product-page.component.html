@@ -25,12 +25,12 @@
         <div style="display: flex;flex-direction: row; align-items: center;">
 
             <button (click)="addToCart()" [disabled]="!product.availlability" class="add-to-cart">
-                Додати в кошик
+                Add to cart
             </button>
 
             <p class="availability" [class.in-stock]="product.availlability"
                 [class.out-of-stock]="!product.availlability">
-                {{ product.availlability ? 'Є в наявності' : 'Немає в наявності' }}
+                {{ product.availlability ? 'In stock' : 'Out of stock' }}
             </p>
 
         </div>
@@ -39,12 +39,12 @@
     </div>
 </div>
 <div class="specs-wrapper">
-  <h2>Характеристики</h2>
+  <h2>Details</h2>
   <h3 class="product-name">{{ product.name }}</h3>
 
   <table class="specs-table">
     <tr>
-      <td class="spec-title">Тип</td>
+      <td class="spec-title">Type</td>
       <td class="spec-value is-linkable" routerLink="/searchpage" (click)="categoryRouterClick()">{{ product.categoryIdNameDTO.name }}</td>
     </tr>
     <tr *ngFor="let spec of product.productCharacteristics">

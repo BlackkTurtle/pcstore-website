@@ -63,12 +63,10 @@ onLogin() {
       } else if (res.status === 401) {
         this.authorizeerror = true;
       } else {
-        localStorage.setItem('token', res.token);
         this.router.navigate(['/userpage']);
       }
     },
     (error) => {
-      // Handle any additional errors
       this.errorMessage = error;
       console.error('There was an error during the login process:', error);
     }

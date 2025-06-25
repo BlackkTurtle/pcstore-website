@@ -81,8 +81,8 @@ export class CommentsAndResponsesComponent {
       },
       error: (err: HttpErrorResponse) => {
         this.createErrorMessage = err.status === 400
-          ? 'Ваш коментар є неприйнятним!'
-          : 'Сталася помилка при створенні коментаря. Будь ласка, спробуйте ще раз.';
+          ? 'Your comment is abusive!'
+          : 'An error occurred while creating the comment. Please try again.';
         this.isCreatingComment$.next(false);
       }
     });
@@ -113,7 +113,7 @@ export class CommentsAndResponsesComponent {
 
   saveEditedComment(commentId: number) {
     if (!this.editingContent.trim() || this.editingContent.length > 500) {
-      this.editErrorMessages[commentId] = 'Коментар не може бути порожнім і повинен бути менше 500 символів.';
+      this.editErrorMessages[commentId] = 'The comment cannot be empty and must be less than 500 characters.';
       return;
     }
 
@@ -145,15 +145,15 @@ export class CommentsAndResponsesComponent {
       },
       error: (err: HttpErrorResponse) => {
         this.editErrorMessages[commentId] = err.status === 400
-          ? 'Ваш коментар є неприйнятним!'
-          : 'Сталася помилка при оновленні коментаря. Будь ласка, спробуйте ще раз.';
+          ? 'Your comment is abusive!'
+          : 'An error occurred while creating the comment. Please try again.';
         this.isUpdatingComment$.next(false);
       }
     });
   }
 
   deleteComment(commentId: number) {
-    if (!confirm('Ви впевнені, що хочете видалити цей коментар? Цю дію не можна буде скасувати.')) {
+    if (!confirm('Are you sure you want to delete this comment? This action cannot be undone.')) {
       return;
     }
 
@@ -178,7 +178,7 @@ export class CommentsAndResponsesComponent {
         this.isDeletingComment$.next(false);
       },
       error: () => {
-        this.deleteErrorMessages[commentId] = 'Помилка при видаленні коментаря. Будь ласка, спробуйте ще раз.';
+        this.deleteErrorMessages[commentId] = 'Error deleting the comment. Please try again.';
         this.isDeletingComment$.next(false); 
       }
     });
@@ -230,8 +230,8 @@ export class CommentsAndResponsesComponent {
       },
       error: (err: HttpErrorResponse) => {
         this.replyErrorMessages[parentId] = err.status === 400
-          ? 'Ваша відповідь є неприйнятною!'
-          : 'Помилка при створенні відповіді. Будь ласка, спробуйте ще раз.';
+          ? 'Your comment is abusive!'
+          : 'An error occurred while creating the comment. Please try again.';
         this.isSubmittingReply$.next(false);
       }
     });

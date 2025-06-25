@@ -4,14 +4,14 @@
     <div id="regi-form" *ngIf="true">
       <div id="cancel-btn" routerLink="/"></div>
       <form [formGroup]="reggform" id="regg-form">
-        <h1 style="margin-left:25%; font-size: 35px;">СТВОРИТИ АККАУНТ</h1>
+        <h1 style="margin-left:30%; font-size: 35px;">CREATE ACCOUNT</h1>
         <table>
           <tr>
             <td>
               <div class="regg-group">
                 <input
                   type="text"
-                  placeholder="Електронна пошта"
+                  placeholder="Email"
                   class="form-control"
                   name="email"
                   formControlName="email"
@@ -24,10 +24,10 @@
                   "
                 >
                   <div *ngIf="reggform.get('email').errors?.required">
-                    *Це обов'язкове поле.
+                    *This field is required.
                   </div>
                   <div *ngIf="reggform.get('email').errors?.email">
-                    *Неправильно введено пошту.
+                    *Invalid email.
                   </div>
                 </div>
               </div>
@@ -36,7 +36,7 @@
                 <div class="regg-group">
                   <input
                     type="tel"
-                    placeholder="Номер Телефону"
+                    placeholder="Phone number"
                     class="form-control"
                     name="phone"
                     formControlName="phone"
@@ -49,10 +49,10 @@
                     "
                   >
                     <div *ngIf="reggform.get('phone').errors?.required">
-                      *Це обов'язкове поле.
+                      *This field is required.
                     </div>
                     <div *ngIf="reggform.get('phone').errors?.pattern">
-                      *Неправильно введено номер телефону.
+                      *Invalid phone number.
                     </div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="password-container">
                   <input
                     type="password"
-                    placeholder="Пароль"
+                    placeholder="Password"
                     class="form-control"
                     name="passwordreg"
                     formControlName="passwordreg"
@@ -83,14 +83,14 @@
                   "
                 >
                   <div *ngIf="reggform.get('passwordreg').errors?.required">
-                    *Це обов'язкове поле.
+                    *This field is required.
                   </div>
                   <div *ngIf="reggform.get('passwordreg').errors?.minlength">
-                    *Пароль має містити мінімум 8 символів.
+                    *Password should have at least 8 charcters.
                   </div>
                   <div *ngIf="reggform.get('passwordreg').errors?.pattern">
-                    *Пароль має містити хоча б 1 цифру,<br />
-                    1 маленьку та 1 велику букву.
+                    *Password should have at least 1 number,<br />
+                    1 lowercase and 1 uppercase letter.
                   </div>
                 </div>
               </div>
@@ -100,7 +100,7 @@
                 <div class="password-container">
                   <input
                     type="password"
-                    placeholder="Повторіть пароль"
+                    placeholder="Repeat password"
                     class="form-control"
                     name="passwordrepeat"
                     formControlName="passwordrepeat"
@@ -119,7 +119,7 @@
                   "
                 >
                   <div *ngIf="reggform.get('passwordrepeat').errors?.required">
-                    *Це обов'язкове поле.
+                    *This field is required.
                   </div>
                 </div>
                 <div class="alert-data">
@@ -129,7 +129,7 @@
                       reggform.get('passwordreg').value
                     "
                   >
-                    *Паролі мають співпадати.
+                    *Passwords should match.
                   </div>
                 </div>
               </div>
@@ -145,7 +145,7 @@
               <div class="regg-group">
                 <input
                   type="text"
-                  placeholder="Прізвище"
+                  placeholder="Lastname"
                   class="form-control"
                   name="surname"
                   formControlName="surname"
@@ -158,10 +158,10 @@
                   "
                 >
                   <div *ngIf="reggform.get('surname').errors?.required">
-                    *Це обов'язкове поле.
+                    *This field is required.
                   </div>
                   <div *ngIf="reggform.get('surname').errors?.pattern">
-                    *Неправильно введено.
+                    *Invalid syntax.
                   </div>
                 </div>
               </div>
@@ -170,7 +170,7 @@
               <div class="regg-group">
                 <input
                   type="text"
-                  placeholder="Ім'я"
+                  placeholder="Firstname"
                   class="form-control"
                   name="firstname"
                   formControlName="firstname"
@@ -183,10 +183,10 @@
                   "
                 >
                   <div *ngIf="reggform.get('firstname').errors?.required">
-                    *Це обов'язкове поле.
+                    *This field is required.
                   </div>
                   <div *ngIf="reggform.get('firstname').errors?.pattern">
-                    *Неправильно введено.
+                    *Invalid syntax.
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@
                 <div class="regg-group" id="father-div">
                   <input
                     type="text"
-                    placeholder="По-Батькові"
+                    placeholder="Fathername"
                     class="form-control"
                     name="father"
                     formControlName="father"
@@ -210,10 +210,10 @@
                     "
                   >
                     <div *ngIf="reggform.get('father').errors?.required">
-                      *Це обов'язкове поле.
+                      *This field is required.
                     </div>
                     <div *ngIf="reggform.get('father').errors?.pattern">
-                        *Неправильно введено.
+                        *Invalid syntax.
                       </div>
                   </div>
                 </div>
@@ -221,12 +221,12 @@
           </tr>
         </table>
         <button type="submit" class="submit-btn" [disabled]="reggform.invalid||reggform.get('passwordrepeat').value !=reggform.get('passwordreg').value" (click)="onRegister()">
-          ДАЛІ
+          CONTINUE
         </button>
         <div class="alert-data" style="margin-left: 33%;" *ngIf="errorMessage.length>0" > {{errorMessage}}</div>
         <div class="sign-in-block">
-          <h6 id="pass-chng-txt">Вже є акаунт?</h6>
-          <button routerLink="/authpage" id="reg-signin-btn">Увійти</button>
+          <h6 id="pass-chng-txt">Already have an account?</h6>
+          <button routerLink="/authpage" id="reg-signin-btn">Login</button>
         </div>
       </form>
     </div>

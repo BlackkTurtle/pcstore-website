@@ -1,24 +1,24 @@
 <div style="width: 90vw; margin-left: 50px;">
     <div *ngIf="!userAuthenticated" class="card p-3 mb-3">
-        <h5>Щоб залишити відгук, ви маєте увійти або зареєструватись</h5>
+        <h5>To leave a review, you must log in or register.</h5>
     </div>
     <div *ngIf="userAuthenticated" class="card p-3 mb-3">
-        <h5>Залишити відгук</h5>
+        <h5>Create review</h5>
         <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
 
             <div class="mb-3">
-                <label class="form-label">Оцінка:</label>
+                <label class="form-label">Rate:</label>
                 <ngb-rating formControlName="rating" [max]="5" id="star-rating"></ngb-rating>
                 <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-danger">
-                    Виберіть оцінку.
+                    Select a rating.
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="content" class="form-label">Ваш відгук:</label>
+                <label for="content" class="form-label">Your review:</label>
                 <textarea id="content" class="form-control" formControlName="content" rows="5"
                     placeholder="Напишіть ваш відгук..." maxlength="500"></textarea>
-                <div class="text-muted text-end">{{ contentLength }}/500 символів</div>
+                <div class="text-muted text-end">{{ contentLength }}/500 symbols</div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="background-color: black; border: none;"
@@ -50,8 +50,8 @@
                 <p class="review-content">{{ review.content }}</p>
 
                 <div *ngIf="userAuthenticated && review.userId === userId" class="review-actions mt-2">
-                    <button class="btn btn-sm btn-outline-primary me-2" (click)="startEdit(review)">Редагувати</button>
-                    <button class="btn btn-sm btn-outline-danger" (click)="deleteReview(review.id)">Видалити</button>
+                    <button class="btn btn-sm btn-outline-primary me-2" (click)="startEdit(review)">Edit</button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteReview(review.id)">Delete</button>
                 </div>
                 <div *ngIf="deleteErrorMessages[review.id]" class="alert alert-danger mt-2">
                     {{ deleteErrorMessages[review.id] }}
@@ -61,15 +61,15 @@
             <!-- Edit mode -->
             <div *ngIf="editingReviewId === review.id" class="mt-2">
                 <div class="mb-2">
-                    <label>Ваша оцінка (оцінку вже не можна міняти):</label>
+                    <label>Your rating (cannot be changed):</label>
                     <ngb-rating id="star-rating" [rate]="editingRating" [readonly]="true" [max]="5"></ngb-rating>
                 </div>
                 <div class="mb-2">
                     <textarea class="form-control" [(ngModel)]="editingContent" rows="4" maxlength="500"></textarea>
-                    <div class="text-muted text-end">{{ editingContent.length }}/500 символів</div>
+                    <div class="text-muted text-end">{{ editingContent.length }}/500 symbols</div>
                 </div>
-                <button class="btn btn-success me-2" (click)="saveEditedReview(review.id)">Зберегти</button>
-                <button class="btn btn-secondary" (click)="cancelEdit()">Скасувати</button>
+                <button class="btn btn-success me-2" (click)="saveEditedReview(review.id)">Save</button>
+                <button class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
                 <div *ngIf="editErrorMessage" class="alert alert-danger mt-2">
                     {{ editErrorMessage }}
                 </div>

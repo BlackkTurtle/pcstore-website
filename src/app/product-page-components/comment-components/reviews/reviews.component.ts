@@ -108,11 +108,11 @@ export class ReviewsComponent {
       },
       error: (err: HttpErrorResponse) => {
         if (err.status === 400) {
-          this.editErrorMessage = 'Ваш коментар є неприйнятним!';
+          this.editErrorMessage = 'Your comment is abusive!';
           this.isLoading = false;
         }
         else {
-          this.editErrorMessage = 'Вибачте, на даний момент ми не можемо прийняти ваш запит!';
+          this.editErrorMessage = 'Error deleting the review. Please try again.';
           this.isLoading = false;
         }
       }
@@ -120,7 +120,7 @@ export class ReviewsComponent {
   }
 
   deleteReview(reviewId: number) {
-    if (!confirm('Ви впевнені, що хочете видалити цей відгук?')) return;
+    if (!confirm('Are you sure, you want to delete this review?')) return;
 
     this.isLoading = true;
     this.deleteErrorMessages[reviewId] = '';
@@ -133,7 +133,7 @@ export class ReviewsComponent {
         this.isLoading = false;
       },
       error: () => {
-        this.deleteErrorMessages[reviewId] = 'Вибачте, на даний момент ми не можемо прийняти ваш запит!';
+        this.deleteErrorMessages[reviewId] = 'Sorry? but we are unable to resolve your request!';
         this.isLoading = false;
       }
     });

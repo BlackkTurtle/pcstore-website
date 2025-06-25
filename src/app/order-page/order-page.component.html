@@ -2,15 +2,15 @@
 <div id="order-page">
     <div id="orders-div">
         <div>
-            <label>Замовлення:</label><br>
-            <label style="margin-left: 40%; font-size:15px; color:lightgray" *ngIf="pOrders.length==0">Немає замовлень</label><br>
+            <label>Order:</label><br>
+            <label style="margin-left: 40%; font-size:15px; color:lightgray" *ngIf="pOrders.length==0">No selected products</label><br>
             <div *ngIf="pOrders.length>0">
                 <div style="display: flex;" *ngFor="let porder of pOrders; let i=index">
                         <img style="width: 150px;height: auto;" [src]="porder.product.picture" alt="No-photo">
                         <div>
-                            <label> Назва: {{porder.product.name}} <br>Ціна: {{porder.price | currency:'UAH':'symbol-narrow'}}</label><br>
+                            <label> Name: {{porder.product.name}} <br>Price: {{porder.price | currency:'UAH':'symbol-narrow'}}</label><br>
                             <div id="quantity-div">
-                                <p>Кількість: </p>
+                                <p>Quantity: </p>
                                 <button (click)="onAddQuantity(i)" class="quantity-btn">+</button>
                                  <p style="margin-left: 10px; margin-right:10px;">{{porder.quantity}}</p>
                                 <button (click)="onRemoveQuantity(i)" class="quantity-btn">-</button>
@@ -19,20 +19,20 @@
                 </div>
                 <hr>
             </div>
-            <label>Сумма: {{getProductsSum()| currency:'UAH':'symbol-narrow'}}</label>
+            <label>Total: {{getProductsSum()| currency:'UAH':'symbol-narrow'}}</label>
         </div>
     </div>
 
     <div>
         <form [formGroup]="reggform" id="regg-form">
-            <h1 style="margin-left:45%; font-size: 35px;">Замовлення</h1>
+            <h1 style="margin-left:45%; font-size: 35px;">Order details</h1>
             <table>
               <tr>
                 <td>
                   <div class="regg-group">
                     <input
                       type="text"
-                      placeholder="Електронна пошта"
+                      placeholder="Email"
                       class="form-control"
                       name="email"
                       formControlName="email"
@@ -45,10 +45,10 @@
                       "
                     >
                       <div *ngIf="reggform.get('email').errors?.required">
-                        *Це обов'язкове поле.
+                        *This field is required.
                       </div>
                       <div *ngIf="reggform.get('email').errors?.email">
-                        *Неправильно введено пошту.
+                        *Invalid email.
                       </div>
                     </div>
                   </div>
@@ -57,7 +57,7 @@
                     <div class="regg-group">
                       <input
                         type="tel"
-                        placeholder="Номер Телефону"
+                        placeholder="Phone number"
                         class="form-control"
                         name="phone"
                         formControlName="phone"
@@ -70,10 +70,10 @@
                         "
                       >
                         <div *ngIf="reggform.get('phone').errors?.required">
-                          *Це обов'язкове поле.
+                          *This field is required.
                         </div>
                         <div *ngIf="reggform.get('phone').errors?.pattern">
-                          *Неправильно введено номер телефону.
+                          *Invalid phone number.
                         </div>
                       </div>
                     </div>
@@ -89,7 +89,7 @@
                   <div class="regg-group">
                     <input
                       type="text"
-                      placeholder="Прізвище"
+                      placeholder="Lastname"
                       class="form-control"
                       name="surname"
                       formControlName="surname"
@@ -102,10 +102,10 @@
                       "
                     >
                       <div *ngIf="reggform.get('surname').errors?.required">
-                        *Це обов'язкове поле.
+                        *This field is required.
                       </div>
                       <div *ngIf="reggform.get('surname').errors?.pattern">
-                        *Неправильно введено.
+                        *Invalid syntax.
                       </div>
                     </div>
                   </div>
@@ -114,7 +114,7 @@
                   <div class="regg-group">
                     <input
                       type="text"
-                      placeholder="Ім'я"
+                      placeholder="Firstname"
                       class="form-control"
                       name="firstname"
                       formControlName="firstname"
@@ -127,10 +127,10 @@
                       "
                     >
                       <div *ngIf="reggform.get('firstname').errors?.required">
-                        *Це обов'язкове поле.
+                        *This field is required.
                       </div>
                       <div *ngIf="reggform.get('firstname').errors?.pattern">
-                        *Неправильно введено.
+                        *Invalid syntax.
                       </div>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                     <div class="regg-group" id="father-div">
                       <input
                         type="text"
-                        placeholder="По-Батькові"
+                        placeholder="Fathername"
                         class="form-control"
                         name="father"
                         formControlName="father"
@@ -154,7 +154,7 @@
                         "
                       >
                         <div *ngIf="reggform.get('father').errors?.pattern">
-                            *Неправильно введено.
+                            *Invalid syntax.
                           </div>
                       </div>
                     </div>
@@ -165,7 +165,7 @@
                     <div class="regg-group" style="margin-left: 37.5%;">
                       <input
                         type="text"
-                        placeholder="Адреса"
+                        placeholder="Address"
                         class="form-control"
                         name="address"
                         formControlName="address"
@@ -178,7 +178,7 @@
                         "
                       >
                         <div *ngIf="reggform.get('address').errors?.required">
-                          *Це обов'язкове поле.
+                          *This field is required.
                         </div>
                       </div>
                     </div>
@@ -186,7 +186,7 @@
               </tr>
             </table>
             <button type="submit" class="submit-btn" [disabled]="reggform.invalid" (click)="onSubmit()">
-              Замовити
+              Submit
             </button>
             <div class="alert-data" style="margin-left: 33%;" *ngIf="errorMessage.length>0" > {{errorMessage}}</div>
           </form>

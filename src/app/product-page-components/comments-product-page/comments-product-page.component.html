@@ -1,10 +1,10 @@
 <div>
     <nav class="tabs">
         <button (click)="setTab('reviews')" [class.active]="activeTab === 'reviews'">
-            Відгуки <span class="badge">{{product.reviews.length}}</span>
+            Reviews <span class="badge">{{product.reviews.length}}</span>
         </button>
         <button (click)="setTab('comments')" [class.active]="activeTab === 'comments'">
-            Питання <span class="badge">{{product.comments.length}}</span>
+            Comments <span class="badge">{{product.comments.length}}</span>
         </button>
     </nav>
 

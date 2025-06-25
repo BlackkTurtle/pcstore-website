@@ -2,7 +2,7 @@
 <div id="main-page-reccomendations">
     <div style="display: flex;">
         <div class="main-pg-txt">
-            <label>Нові товари:</label><br>
+            <label>New Products:</label><br>
             <div *ngFor="let product of new2Products; let i=index" class="product-item"
                 routerLink='/productpage/{{product.id}}'>
                 <img [src]="product.photoLink" alt="product-picture" class="product-picture"><br>
@@ -12,8 +12,8 @@
                     <h6>{{ product.rating| number: '1.1-1' }}</h6>
                 </div>
                 <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
-                <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>
-                <label *ngIf="product.availlability==false" class="availability-false">Немає в наявності</label><br>
+                <label *ngIf="product.availlability==true" class="availability-true">In stock</label>
+                <label *ngIf="product.availlability==false" class="availability-false">Out of stock</label><br>
             </div>
         </div>
         <div>
@@ -29,7 +29,7 @@
                     </button>
             </div>
             <div class="main-pg-txt" style="margin-top: 40px;">
-                <label>Нещодавно переглянуті:</label>
+                <label>Recently seen:</label>
             </div>
             <div style="display: flex; margin-left: 60px;">
                 <div *ngFor="let product of seenProducts; let i=index" class="product-item"
@@ -41,8 +41,8 @@
                         <h6>{{ product.rating| number: '1.1-1' }}</h6>
                     </div>
                     <label class="product-price">{{product.price | currency:'UAH':'symbol-narrow'}}</label><br>
-                    <label *ngIf="product.availlability==true" class="availability-true">Є в наявності</label>
-                    <label *ngIf="product.availlability==false" class="availability-false">Немає в наявності</label><br>
+                    <label *ngIf="product.availlability==true" class="availability-true">In stock</label>
+                    <label *ngIf="product.availlability==false" class="availability-false">Out of stock</label><br>
                 </div>
             </div>
         </div>

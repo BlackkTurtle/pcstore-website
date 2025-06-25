@@ -1,17 +1,17 @@
 <div style="width: 90vw; margin-left: 50px;">
     <div class="card p-3 mb-3" *ngIf="!userAuthenticated">
-        <h5>Щоб залишити коментар, ви маєте увійти або зареєструватись</h5>
+        <h5>To leave a comment, you must log in or register.</h5>
     </div>
 
     <div class="card p-3 mb-3" *ngIf="userAuthenticated">
         <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
-            <label for="content" class="form-label">Ваш коментар:</label>
+            <label for="content" class="form-label">Your comment:</label>
             <textarea id="content" class="form-control" formControlName="content" rows="4"
                 placeholder="Напишіть коментар..." maxlength="500"></textarea>
-            <div class="text-muted text-end">{{ contentLength }}/500 символів</div>
+            <div class="text-muted text-end">{{ contentLength }}/500 symbols</div>
             <button class="btn btn-dark mt-2" type="submit"
                 [disabled]="commentForm.invalid || (isCreatingComment$ | async)">
-                Надіслати
+                Send
             </button>
             <div *ngIf="createErrorMessage" class="alert alert-danger mt-2">{{ createErrorMessage }}</div>
         </form>
@@ -31,19 +31,19 @@
             <button *ngIf="userAuthenticated && comment.userId === userId" class="btn btn-sm btn-outline-primary me-2"
                 (click)="startEdit(comment)"
                 [disabled]="(isUpdatingComment$ | async) || (isDeletingComment$ | async) || (isSubmittingReply$ | async) || (isCreatingComment$ | async) || replyingToCommentId !== null">
-                Редагувати
+                Edit
             </button>
 
             <button *ngIf="userAuthenticated && comment.userId === userId" class="btn btn-sm btn-outline-danger"
                 (click)="deleteComment(comment.id)"
                 [disabled]="(isUpdatingComment$ | async) || (isDeletingComment$ | async) || (isSubmittingReply$ | async) || (isCreatingComment$ | async) || replyingToCommentId !== null">
-                Видалити
+                Delete
             </button>
 
             <button *ngIf="userAuthenticated && replyingToCommentId !== comment.id && editingCommentId === null"
                 class="btn btn-outline-secondary btn-sm" style="margin-left: 10px;" (click)="startReply(comment.id)"
                 [disabled]="(isUpdatingComment$ | async) || (isDeletingComment$ | async) || (isSubmittingReply$ | async) || (isCreatingComment$ | async)">
-                Відповісти
+                Respond
             </button>
 
             <div *ngIf="deleteErrorMessages[comment.id]" class="alert alert-danger mt-2">
@@ -55,11 +55,11 @@
             <textarea class="form-control" [(ngModel)]="editingContent" rows="3" maxlength="500"></textarea>
             <button class="btn btn-success btn-sm mt-2 me-2" (click)="saveEditedComment(comment.id)"
                 [disabled]="!editingContent.trim() || editingContent.length > 500 || (isUpdatingComment$ | async)">
-                Зберегти
+                Save
             </button>
             <button class="btn btn-secondary btn-sm mt-2" (click)="cancelEdit()"
                 [disabled]="(isUpdatingComment$ | async)">
-                Скасувати
+                Cancel
             </button>
             <div *ngIf="editErrorMessages[comment.id]" class="alert alert-danger mt-2">
                 {{ editErrorMessages[comment.id] }}
@@ -68,16 +68,16 @@
 
         <div *ngIf="replyingToCommentId === comment.id && userAuthenticated" class="ms-4 mt-2">
             <form [formGroup]="replyForms[comment.id]" (ngSubmit)="submitReply(comment.id)">
-                <label for="replyContent-{{comment.id}}" class="form-label">Ваша відповідь:</label>
+                <label for="replyContent-{{comment.id}}" class="form-label">Your response:</label>
                 <textarea id="replyContent-{{comment.id}}" class="form-control" formControlName="content" rows="3"
-                    maxlength="500" placeholder="Напишіть відповідь..."></textarea>
+                    maxlength="500" placeholder="..."></textarea>
                 <button class="btn btn-primary btn-sm mt-2 me-2" type="submit"
                     [disabled]="replyForms[comment.id]?.invalid! || (isSubmittingReply$ | async)">
-                    Надіслати відповідь
+                    Send
                 </button>
                 <button class="btn btn-secondary btn-sm mt-2" (click)="cancelReply(comment.id)"
                     [disabled]="(isSubmittingReply$ | async)">
-                    Скасувати
+                    Cancel
                 </button>
             </form>
             <div *ngIf="replyErrorMessages[comment.id]" class="alert alert-danger mt-2">
@@ -100,11 +100,11 @@
                 <div *ngIf="userAuthenticated && reply.userId === userId">
                     <button class="btn btn-sm btn-outline-primary me-2" (click)="startEdit(reply)"
                         [disabled]="(isUpdatingComment$ | async) || (isDeletingComment$ | async) || (isSubmittingReply$ | async) || (isCreatingComment$ | async) || replyingToCommentId !== null">
-                        Редагувати
+                        Edit
                     </button>
                     <button class="btn btn-sm btn-outline-danger" (click)="deleteComment(reply.id)"
                         [disabled]="(isUpdatingComment$ | async) || (isDeletingComment$ | async) || (isSubmittingReply$ | async) || (isCreatingComment$ | async) || replyingToCommentId !== null">
-                        Видалити
+                        Delete
                     </button>
                 </div>
                 <div *ngIf="deleteErrorMessages[reply.id]" class="alert alert-danger mt-2">
@@ -116,11 +116,11 @@
                 <textarea class="form-control" [(ngModel)]="editingContent" rows="3" maxlength="500"></textarea>
                 <button class="btn btn-success btn-sm mt-2 me-2" (click)="saveEditedComment(reply.id)"
                     [disabled]="!editingContent.trim() || editingContent.length > 500 || (isUpdatingComment$ | async)">
-                    Зберегти
+                    Save
                 </button>
                 <button class="btn btn-secondary btn-sm mt-2" (click)="cancelEdit()"
                     [disabled]="(isUpdatingComment$ | async)">
-                    Скасувати
+                    Cancel
                 </button>
                 <div *ngIf="editErrorMessages[reply.id]" class="alert alert-danger mt-2">
                     {{ editErrorMessages[reply.id] }}

@@ -21,16 +21,12 @@ export class MainProductPageComponent {
 
   ngOnInit(): void {
     this.selectedImage = this.product.images?.[0] || '';
-    this.product.description = `  Використовувати при t +10°С - +35°С, ϕ 20%-75% оточуючого середовища.
-     Зберігати при t +5°С - +35°С, ϕ 20%-75% в захищеному від дітей місці.
-Товари не є харчовими продуктами, та за нормальних умов використання не є шкідливими для здоров'я.
-Строк служби рівний гарантійному строку. По закінченню строку служби передати службі утилізації.
-   Країна виробництва (місцезнаходження виробника) вказана на товарі в полі Made In або схожим чином у спосіб передбаченим виробником.
-Дата виробництва конкретної одиниці зазначена на коробці та/або на товарі чи в його ПЗ, в полі manufacturing date або схожим чином (в тому числі й у вигляді кодування дати виробництва в серійний номер продукту) у спосіб передбаченим виробником.
-  Підприємство щодо прийняття претензій та запиту додаткової інформації:
-• ТОВ "ТЕЛЕМАРТ"
-• м.Дніпро пров.Біологічний 2А оф.16 Тeл:+380674000880
-• ел.пошта:sales@telemart.ua`;
+    this.product.description = `Use at temperatures from +10°C to +35°C, with ambient humidity from 20% to 75%.
+Store at temperatures from +5°C to +35°C, with ambient humidity from 20% to 75%, in a place inaccessible to children.
+The products are not food items and, under normal usage conditions, are not harmful to health.
+The service life is equal to the warranty period. After the service life ends, transfer the product to a recycling service.
+The country of manufacture (manufacturer’s location) is indicated on the product in the “Made In” field or in a similar way as specified by the manufacturer.
+The manufacturing date of the specific unit is indicated on the box and/or on the product or in its software, in the “manufacturing date” field or in a similar way (including encoded as part of the serial number) as specified by the manufacturer.`;
   }
 
   selectImage(img: string): void {
